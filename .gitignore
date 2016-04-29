@@ -1,6 +1,5 @@
 node_modules
 dist
-www
 platforms
 release
 .tmp
@@ -8,5 +7,4 @@ app/styles/**/*.css
 app/styles/**/*.css.map
 .sass-cache
 bower_components
-app/bower_components
 *.log
