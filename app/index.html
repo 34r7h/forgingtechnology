@@ -1,0 +1,86 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <title>Numetal</title>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible"
+          content="IE=edge">
+    <meta name="description"
+          content="">
+    <meta name="keywords"
+          content="">
+
+    <!-- Enable all requests and inline styles for painless development.
+TODO configure more restrictive Content-Security-Policy
+@see http://content-security-policy.com/
+@see http://www.html5rocks.com/en/tutorials/security/content-security-policy/ -->
+
+
+    <!-- build:css(.tmp,app) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css(.tmp,app) styles/main.css -->
+    <link rel="stylesheet"
+          href="styles/main.css"/>
+    <!-- endbuild -->
+</head>
+
+<body ng-app="numetal">
+
+<main ui-view></main>
+
+
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+
+
+<!-- build:js({.tmp,app}) scripts/oldieshim.js -->
+<!--[if lt IE 9]>
+<script src="bower_components/es5-shim/es5-shim.js"></script>
+<script src="bower_components/json3/lib/json3.js"></script>
+<![endif]-->
+<!-- endbuild -->
+
+<!-- build:js({.tmp,app}) scripts/vendor.js -->
+<!-- bower:js -->
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-aria/angular-aria.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-touch/angular-touch.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="bower_components/angular-messages/angular-messages.js"></script>
+<script src="bower_components/ng-fab-form/dist/ng-fab-form.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+<!-- inject:js -->
+<script src="scripts/_app.js"></script>
+<script src="scripts/admin/admin-d.js"></script>
+<script src="scripts/connect/connect-d.js"></script>
+<script src="scripts/content/content-d.js"></script>
+<script src="scripts/content-single/content-single-d.js"></script>
+<script src="scripts/gallery/gallery-d.js"></script>
+<script src="scripts/layout/layout-d.js"></script>
+<script src="scripts/main/global-services/api-f.js"></script>
+<script src="scripts/main/global-services/data-f.js"></script>
+<script src="scripts/main/global-services/facts-f.js"></script>
+<script src="scripts/main/global-services/state-f.js"></script>
+<script src="scripts/main/global-services/ux-f.js"></script>
+<script src="scripts/posts/posts-d.js"></script>
+<script src="scripts/posts-single/posts-single-d.js"></script>
+<script src="scripts/routes.js"></script>
+<!-- endinject -->
+<!-- endbuild -->
+</body>
+</html>
+
+

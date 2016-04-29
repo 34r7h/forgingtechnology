@@ -1,0 +1,52 @@
+/*
+IMPORTANT NOTE:
+ This file SHOULD NOT BE EDITED MANUALLY, as its purpose
+ is to be the point where all your stylesheet-files will
+ be imported
+*/
+
+
+
+// inject:sass
+
+@import  '_functions/_some-function.scss';
+
+@import  '_mixins/_some-mixin.scss';
+
+@import  '_placeholders/_some-placeholder.scss';
+
+@import  '_variables.scss';
+
+@import  '../scripts/admin/_admin-d.scss';
+
+@import  'base/_buttons.scss';
+
+@import  'base/_fonts.scss';
+
+@import  'base/_forms.scss';
+
+@import  'base/_icons.scss';
+
+@import  'base/_lists.scss';
+
+@import  'base/_page.scss';
+
+@import  'base/_tables.scss';
+
+@import  'base/_typography.scss';
+
+@import  '../scripts/connect/_connect-d.scss';
+
+@import  '../scripts/content/_content-d.scss';
+
+@import  '../scripts/content-single/_content-single-d.scss';
+
+@import  '../scripts/gallery/_gallery-d.scss';
+
+@import  '../scripts/layout/_layout-d.scss';
+
+@import  '../scripts/posts/_posts-d.scss';
+
+@import  '../scripts/posts-single/_posts-single-d.scss';
+
+// endinject
