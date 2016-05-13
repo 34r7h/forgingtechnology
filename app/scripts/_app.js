@@ -9,11 +9,13 @@
 'use strict';
 
 angular.module('numetal', [
-    'ngAnimate',
-    'ngAria',
-    'ngResource',
-    'ngSanitize',
-    'ngTouch',
-    'ui.router',
-    'ngFabForm'
-  ]);
+	'ngAnimate',
+	'ngAria',
+	'ngResource',
+	'ngSanitize',
+	'ngTouch',
+	'ui.router',
+	'ngFabForm',
+	'firebase',
+	'ngImgCrop'
+]);

@@ -8,9 +8,12 @@
  */
 
 angular.module('numetal')
-    .config(function ($stateProvider, $urlRouterProvider)
+    .config(function ($stateProvider, $urlRouterProvider, $locationProvider)
     {
         'use strict';
+
+        $locationProvider.hashPrefix('!');
+        // $locationProvider.html5Mode(true);
 
         $urlRouterProvider.otherwise('/');
 
@@ -40,7 +43,7 @@ angular.module('numetal')
                 url: '/services',
                 template: '<content type="services"></content>'
             })
-            .state('metal.services.service', {
+            .state('metal.services.services', {
                 url: '/:services',
                 template: '<content-single type="services"></content-single>'
             })
@@ -48,7 +51,7 @@ angular.module('numetal')
                 url: '/clients',
                 template: '<content type="clients"></content>'
             })
-            .state('metal.clients.client', {
+            .state('metal.clients.clients', {
                 url: '/:clients',
                 template: '<content-single type="clients"></content-single>'
             })
@@ -56,7 +59,7 @@ angular.module('numetal')
                 url: '/posts',
                 template: '<content type="posts"></content>'
             })
-            .state('metal.posts.post', {
+            .state('metal.posts.posts', {
                 url: '/:posts',
                 template: '<content-single type="posts"></content-single>'
             })
@@ -90,7 +93,7 @@ angular.module('numetal')
             })
             .state('admin.media', {
                 url: '/media',
-                template: '<admin type="media"></admin>'
+                template: '<uploader></uploader><admin type="media"></admin>'
             })
             /* STATES-NEEDLE - DO NOT REMOVE THIS */;
 

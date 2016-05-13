@@ -1,5 +1,7 @@
 <h2>
-    {{(metal.s.params || metal.s.param )| uppercase}} <button ng-click="metal.a.msg(metal.s.param)">Msg</button>
-
+    {{(metal.s.params || metal.s.type )| uppercase}}
+    <button ng-click="metal.a.msg(metal.s.params ||metal.s.type); metal.d.array[metal.s.type].$add({title:'first post', text:'find your love'})">Single Msg</button>
+    <button ng-click="metal.a.msg(metal.s.params ||metal.s.type); metal.a.rm(metal.s.type, metal.s.params[metal.s.type])">api.rm</button>
 </h2>
-
+<input type="text" ng-model="metal.s.object[metal.s.type][metal.s.params].title" ng-change="metal.a.save(metal.s.type, metal.s.params)">
+{{metal.s.object[metal.s.type][metal.s.params]}}

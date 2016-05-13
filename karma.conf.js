@@ -24,6 +24,10 @@ module.exports = function (config)
             'app/bower_components/angular-ui-router/release/angular-ui-router.js',
             'app/bower_components/angular-messages/angular-messages.js',
             'app/bower_components/ng-fab-form/dist/ng-fab-form.js',
+            'app/bower_components/firebase/firebase.js',
+            'app/bower_components/angularfire/dist/angularfire.js',
+            'app/bower_components/aws-sdk/dist/aws-sdk.js',
+            'app/bower_components/ng-img-crop/compile/minified/ng-img-crop.js',
             'app/bower_components/angular-mocks/angular-mocks.js',
             // endbower
 

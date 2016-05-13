@@ -1,8 +1,6 @@
 <div ng-style="{width:'100vw', height:'10vh', padding:'1em'}">
     <h1 ng-style="{margin:0}">
         This is the admin directive.
-        <button ng-click="admin.a.msg(admin.s.param)">Msg</button>
-
     </h1>
 </div>
 <div ng-style="{display:'flex'}">
@@ -17,7 +15,14 @@
     </div>
 
     <div ng-style="{width:'80vw', height:'90vh', padding:'1em'}">
-        <h2>{{admin.s.param | uppercase}}</h2>
+        <h2>{{admin.s.type | uppercase}}</h2>
+        <div ng-repeat="(key, val) in $parent.admin.d.array[$parent.admin.s.type]">
+            <div>
+                <button ng-click="admin.a.rm(admin.s.type, val.$id)">Remove</button>
+            </div>
+            {{val.$id}}: {{val}}
+            <img ng-src="{{val.src[1000]}}" alt="">
+        </div>
     </div>
 </div>
 

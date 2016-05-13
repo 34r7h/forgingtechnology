@@ -14,7 +14,7 @@ angular.module('numetal')
             restrict: 'EA',
             controller: function ($scope, $attrs)
             {
-	            $scope.$parent.admin.s.param = $attrs.type;
+	            $scope.$parent.admin.s.type = $attrs.type;
             }
         };
     });
