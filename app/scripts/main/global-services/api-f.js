@@ -10,18 +10,12 @@ angular.module('numetal')
 	.factory('Api', function ($http, $state, Data, $firebaseObject) {
 		'use strict';
 
-		// INITIALIZATION
-
-
-		// ACTUAL DEFINITION
 		var api = {
 			get: function (url) {
 				var returnData = {};
 				$http.get(url).then(function (data) {
-					// console.log('Fetched data from '+url, data);
 					returnData.data = data;
 				});
-				// console.log(returnData);
 				return returnData;
 			},
 			go: function (state, params) {
@@ -29,7 +23,6 @@ angular.module('numetal')
 				$state.reload(state);
 			},
 			add: function (type, obj) {
-				console.info('Adding object to Firebase', arguments);
 				var returnData = {};
 				obj.updated = Date.now(); // adds timestamp to each added object.
 				!Data.object[type] ? Data.object[type] = {} : null; // TODO put in data factory. For a fresh app, creates post and index keys.
@@ -43,12 +36,7 @@ angular.module('numetal')
 					Data.object.index[type][ref.key()] = true;
 					Data.object.posts[ref.key()] = type;
 					Data.object.$save();
-					// Data.key = ref.key();
-					// State.data[ref.key()] = ref.key();
-					// returnData.ref = ref.key();
 				});
-				// console.log(returnData.ref);
-				// return returnData;
 			},
 			rm: function (type, id) {
 				/**/
@@ -70,7 +58,7 @@ angular.module('numetal')
 					};
 					bucketInstance.deleteObject(params, function (err, data) {
 						if (data) {
-							console.log("File deleted successfully");
+							// console.log("File deleted successfully");
 						}
 						else {
 							console.log("Check if you have sufficient permissions : "+err);
@@ -84,24 +72,15 @@ angular.module('numetal')
 						Data.object.$save();
 						data.$save();
 					});
-					// Data.media[Data.object[type][id].name.replace('.','`')] = null;
-					// return Data.media;
 				}
 				type === 'media' ? deleteFile() : null;
 
-				// console.log(Data.object,[type],[id]);
 				type !== 'media' ?
 					(Data.object[type][id] = null, Data.object.index[type][id] = null, Data.object.posts[id] = null, Data.object.$save() )
 					: null;
-				// console.log(Data.object.index[type]);
-				// Data.object.index[type][id] = null;
-				// Data.object.posts[id] = null;
-
-				/* Delete file from AWS S3 */
 			},
 			save: function (type, id) {
 				api.msg(arguments);
-				// Data.object[type][id].updated = Date.now();
 				Data.object[type].$save();
 			},
 			msg: function (msg) {
