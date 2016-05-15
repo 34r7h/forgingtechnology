@@ -20,8 +20,16 @@
             <div>
                 <button ng-click="admin.a.rm(admin.s.type, val.$id)">Remove</button>
             </div>
-            {{val.$id}}: {{val}}
-            <img ng-src="{{val.src[1000]}}" alt="">
+            <p><b>ID:</b> {{val.$id}}</p>
+            <p><b>VALUE:</b> {{val}}</p>
+            <hr>
+            <img ng-show="thumb" ng-init="thumb = admin.a.get('https://sizzling-fire-2548.firebaseio.com/media/'+ ( admin.d.object.media[val.$id].name.replace('.','`') || val.name.replace('.','`') ) + '.json' )" ng-src="{{thumb.data.data}}" alt="">
+            <!--p><b>HTTP RESPONSE:</b> {{thumb}}</p-->
+            <p><b>MEDIA:</b> {{thumb.data.data[admin.d.media[val.$id]]}}</p>
+            <p>Media Object: {{admin.d.object.media[val.$id].name.replace('.','`')}}</p>
+            <!--<p><b>ADMIN MEDIA:</b> {{admin.d.media}}</p>-->
+            <img ng-if="full" ng-src="{{val.src}}" alt="">
+            <hr>
         </div>
     </div>
 </div>

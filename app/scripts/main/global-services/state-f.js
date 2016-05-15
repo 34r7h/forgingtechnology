@@ -16,7 +16,8 @@ angular.module('numetal')
         // ACTUAL DEFINITION
         var state = {
             params: $state.params,
-            current: $state.current
+            current: $state.current,
+            data: {}
         };
 
         return state;
