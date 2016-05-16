@@ -47,7 +47,8 @@
             </label>
             <label>
                 <span ng-init="add.media = []">Select Media</span>
-                <button ng-click="admin.s.show.attachMedia = !admin.s.show.attachMedia">Attach Media</button>
+                <button ng-click="admin.s.show.attachMedia = true">Attach Media</button>
+                <button ng-click="admin.s.show.attachMedia = false">Done Selecting Media</button>
                 <hr>
                 <div ng-show="admin.s.show.attachMedia"
                      ng-style="{display:'flex'}">
