@@ -7,10 +7,11 @@
  */
 
 angular.module('numetal')
-	.factory('Api', function ($http, $state, Data, $firebaseObject) {
+	.factory('Api', function ($http, $state, Data, $firebaseObject, $timeout, State) {
 		'use strict';
 
 		var api = {
+			
 			get: function (url) {
 				var returnData = {};
 				$http.get(url).then(function (data) {

@@ -16,6 +16,5 @@ angular.module('numetal', [
 	'ngTouch',
 	'ui.router',
 	'ngFabForm',
-	'firebase',
-	'ngImgCrop'
+	'firebase'
 ]);
