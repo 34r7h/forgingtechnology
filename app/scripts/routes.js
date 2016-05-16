@@ -41,27 +41,27 @@ angular.module('numetal')
             })
             .state('metal.services', {
                 url: '/services',
-                template: '<content type="services"></content>'
+                template: '<content type="services" section="services"></content>'
             })
             .state('metal.services.services', {
                 url: '/:services',
-                template: '<content-single type="services"></content-single>'
+                template: '<content-single type="services" section="services"></content-single>'
             })
             .state('metal.clients', {
                 url: '/clients',
-                template: '<content type="clients"></content>'
+                template: '<content type="clients" section="clients"></content>'
             })
             .state('metal.clients.clients', {
                 url: '/:clients',
-                template: '<content-single type="clients"></content-single>'
+                template: '<content-single type="clients" section="clients"></content-single>'
             })
             .state('metal.posts', {
                 url: '/posts',
-                template: '<content type="posts"></content>'
+                template: '<content section="posts" type="posts"></content>'
             })
             .state('metal.posts.posts', {
                 url: '/:posts',
-                template: '<content-single type="posts"></content-single>'
+                template: '<content-single section="posts" type="posts"></content-single>'
             })
             .state('admin', {
                 url: '/admin',
@@ -93,7 +93,13 @@ angular.module('numetal')
             })
             .state('admin.media', {
                 url: '/media',
-                template: '<uploader></uploader><admin type="media"></admin>'
+                template: '<admin type="media"></admin>',
+                onEnter: function (State) {
+                    State.showMedia = true;
+                },
+                onExit: function (State) {
+                    State.showMedia = false;
+                }
             })
             /* STATES-NEEDLE - DO NOT REMOVE THIS */;
 

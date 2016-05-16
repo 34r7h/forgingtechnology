@@ -13,6 +13,7 @@ angular.module('numetal')
 		var api = {
 			
 			get: function (url) {
+				console.log(url);
 				var returnData = {};
 				$http.get(url).then(function (data) {
 					returnData.data = data;
@@ -34,7 +35,17 @@ angular.module('numetal')
 					!Data.object.index ? Data.object.index = {} : null;
 					!Data.object.posts ? Data.object.posts = {} : null;
 					!Data.object.index[type] ? Data.object.index[type] = {} : null;
+
+					obj.section ? !Data.object.index.sections ? Data.object.index.sections = {}: null : null;
+					obj.section ? !Data.object.index.sections[obj.section] ? (Data.object.index.sections[obj.section] = {}, Data.object.index.sections[obj.section][ref.key()] = true) : Data.object.index.sections[obj.section][ref.key()] = true : null;
+
 					Data.object.index[type][ref.key()] = true;
+
+					obj.tags ? angular.forEach(obj.tags, function (tag) {
+						!Data.object.index.tags ? Data.object.index.tags = {}: null;
+						!Data.object.index.tags[tag] ? (Data.object.index.tags[tag] = {}, Data.object.index.tags[tag][ref.key()] = true) : Data.object.index.tags[tag][ref.key()] = true;
+					}) : null;
+
 					Data.object.posts[ref.key()] = type;
 					Data.object.$save();
 				});

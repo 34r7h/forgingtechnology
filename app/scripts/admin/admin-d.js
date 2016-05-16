@@ -15,6 +15,7 @@ angular.module('numetal')
             controller: function ($scope, $attrs)
             {
 	            $scope.$parent.admin.s.type = $attrs.type;
+	            $scope.$parent.admin.s.section = $attrs.section;
             }
         };
     });

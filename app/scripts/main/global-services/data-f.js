@@ -16,14 +16,15 @@ angular.module('numetal')
 		var fbMedia = new Firebase(fbMediaRef);
 		var obj = $firebaseObject(fb);
 		// var media = $firebaseObject(fbMedia);
-		var types = ['clients', 'services', 'posts', 'site', 'media'];
+		var types = ['content', 'site', 'media'];
 		var arrObj = {};
 		for (var typeNumber = types.length-1; typeNumber >= 0; typeNumber--) {
 			arrObj[types[typeNumber]] = $firebaseArray(fb.child(types[typeNumber]));
+			// arrObj['index'] = $firebaseArray(fb.child('index'));
 		}
 		// ACTUAL DEFINITION
 		var data = {
-			index: {},
+			// index: {},
 			object: {},
 			array: [],
 			refs: {media: fbMedia, fb: fb}
@@ -31,7 +32,7 @@ angular.module('numetal')
 		obj.$loaded().then(function (fbReady) {
 			data.object = fbReady;
 			data.array = arrObj;
-			data.index = fbReady.index;
+			// data.index = fbReady.index;
 			// data.media = media;
 		});
 		// console.log(data);
