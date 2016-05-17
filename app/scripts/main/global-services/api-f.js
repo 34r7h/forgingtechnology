@@ -11,9 +11,10 @@ angular.module('numetal')
 		'use strict';
 
 		var api = {
-			
+			copy: function (obj) {
+				return angular.copy(obj);
+			},
 			get: function (url) {
-				console.log(url);
 				var returnData = {};
 				$http.get(url).then(function (data) {
 					returnData.data = data;
@@ -91,9 +92,13 @@ angular.module('numetal')
 					(Data.object[type][id] = null, Data.object.index[type][id] = null, Data.object.posts[id] = null, Data.object.$save() )
 					: null;
 			},
-			save: function (type, id) {
+			save: function (type, id, newObj, oldObj) {
 				api.msg(arguments);
-				Data.object[type].$save();
+				console.log(newObj, oldObj, JSON.stringify(newObj.tags) === JSON.stringify(oldObj.tags));
+				Data.object[type][id] = newObj;
+				$timeout(function () {
+					Data.object.$save();
+				},2000);
 			},
 			msg: function (msg) {
 				var timeStart = performance.now();
