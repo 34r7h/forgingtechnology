@@ -6,7 +6,7 @@
  * Factory in the numetal.
  */
 angular.module('numetal')
-    .factory('Ux', function ()
+    .factory('Ux', function ($window)
     {
         'use strict';
 
@@ -15,10 +15,10 @@ angular.module('numetal')
 
         // ACTUAL DEFINITION
         var service = {
-            someMethod: function ()
-            {
-
+            xy: function () {
+                return [$window.innerWidth,$window.innerHeight];
             }
+
         };
 
         return service;

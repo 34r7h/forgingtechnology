@@ -1,0 +1,22 @@
+<div
+        class="grid"
+        ng-style="{display:'flex', flexFlow:'row wrap', justifyContent:'space-between'}">
+    <span
+            ng-style="{flex:'1 1 auto', display:'flex', flexDirection:'row', maxWidth:'100%'}"
+            ng-repeat="(key, val) in admin.d.array.posts">
+        <label><input type="checkbox" ng-model="admin.d.object[val.$value][val.$id].publish"><span> Published</span></label>
+        <b>{{admin.d.object[val.$value][val.$id].name}}</b>
+        <b type="button" ng-click="$parent.admin.a.save(val.$value, val.$id, admin.d.object[val.$value][val.$id])">SAVE</b>
+        <!-- TODO make next and prev feature for image viewing -->
+        <span>
+            <code>{{admin.d.object.media[admin.d.object[val.$value][val.$id].media[0]].name}}</code>
+            <img ng-init="postThumb = admin.d.object[val.$value][val.$id].media[0] ? admin.a.get('https://sizzling-fire-2548.firebaseio.com/media/'+ admin.d.object.media[admin.d.object[val.$value][val.$id].media[0]].name.replace('.','`')+ '.json'): admin.a.get('https://sizzling-fire-2548.firebaseio.com/media/'+ admin.d.object.media[val.$id].name.replace('.','`')+ '.json')" alt="" ng-src="{{postThumb ? postThumb.data.data: 'no image'}}" ng-style="{maxHeight:'80px'}">
+
+            <!--<img
+                    ng-style="{width:'100%', background:thumb.data.data + ' no-repeat center center/cover'}"
+                    ng-init="!thumb ? thumb = admin.a.get('https://sizzling-fire-2548.firebaseio.com/media/'+ ( admin.d.object.media[val.$id].name.replace('.','`') ||  admin.object.media[admin.d.object[val.$value][val.$id].media[0]].name.replace('.','`') ) + '.json' ): null; admin.d.object[val.$value][val.$id].media[0] ? thumb = admin.a.get('https://sizzling-fire-2548.firebaseio.com/media/'+ admin.d.object.media[admin.d.object[val.$value][val.$id].media[0]].name.replace('.','`')+'json' ): null"
+                    ng-src="{{thumb.data.data}}" alt="">-->
+            <hr>
+        </span>
+    </span>
+</div>

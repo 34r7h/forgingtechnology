@@ -1,3 +1,31 @@
 admin {
 
 }
+
+admin input[type=text] {
+  width:100%;
+  padding:10px;
+  font-size: 18px;
+  min-width:320px;
+}
+admin input[type=file] {
+  width:100%;
+  padding:10px;
+  font-size: 18px;
+  max-height:40px;
+  min-width:320px;
+}
+
+admin textarea {
+  width:100%;
+  padding:10px;
+  font-size:16px;
+  min-width: 320px;
+  max-width: 320px;
+}
+
+admin select {
+  padding:10px;
+  font-size:18px;
+  min-width: 320px;
+}

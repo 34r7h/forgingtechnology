@@ -1,184 +1,42 @@
 <div ng-style="{width:'100vw', height:'10vh', padding:'1em'}">
-    <div ng-style="{display:'flex'}">
+    <div ng-style="{display:'flex', justifyContent:'space-between'}">
         <h3 ng-style="{margin:0}">
             Admin: {{admin.s.type | uppercase}} {{admin.s.section | uppercase}}
-
         </h3>
+        <h3 ng-style="{margin:0}" ng-click="admin.s.show.addEntry = !admin.s.show.addEntry">+ Add New Entry</h3>
     </div>
 </div>
-<div ng-style="{display:'flex'}">
-    <div ng-style="{width:'20vw', height:'90vh', padding:'1em', display:'flex', justifyContent:'space-between', flexDirection:'column'}">
-        <h2 ng-style="{flex: '1 1 auto'}">NAVIGATION</h2>
+
+<div ng-init="xy = admin.u.xy();" ng-style="{display:'flex'}">
+    <div ng-style="{width: xy[0] > 480 ? '20vw' : '100vw', height:xy[0] > 480 ?'90vh' : '10vh', padding:'1em', display:'flex', justifyContent:'space-between', flexDirection:'column'}">
         <div ng-style="{margin:0, flex: '1 1 auto'}"><a ui-sref="metal.home">Home</a></div>
         <div ng-style="{margin:0, flex: '1 1 auto'}"><a ui-sref="admin.services">Services</a></div>
         <div ng-style="{margin:0, flex: '1 1 auto'}"><a ui-sref="admin.clients">Clients</a></div>
         <div ng-style="{margin:0, flex: '1 1 auto'}"><a ui-sref="admin.posts">Posts</a></div>
         <div ng-style="{margin:0, flex: '1 1 auto'}"><a ui-sref="admin.media">Media</a></div>
-        <div ng-style="{margin:0, flex: '1 1 auto'}"><a ui-sref="admin.about">About</a></div>
-        <form ng-style="{display:'flex', flexDirection:'column'}" name="new">
-            <label for="add-name">
-                <span>Name</span><input id="add-name" type="text" ng-model="add.name">
-            </label>
-            <label for="add-content">
-                <span>Select Content</span><textarea id="add-content" type="text" ng-model="add.content"
-                                                     placeholder="Add text"></textarea>
-            </label>
-            <label for="add-section">
-                <p>Add Section</p>
-                <select name="choose-section" id="add-section" ng-model="add.section">
-                    <option value="{{sectionKey}}"
-                            ng-repeat="(sectionKey, section) in $parent.admin.d.object.index.sections">{{sectionKey}}
-                    </option>
-                    <option value="new section">New Section</option>
-                </select>
-                <span ng-show="add.section === 'new section'">
-                    <input
-                            id="add-newsection"
-                            placeholder="Add Section"
-                            type="text" ng-model="newSection"
-                            ng-blur="admin.d.object.index.sections[newSection] = {}; add.section = newSection">
-                </span>
-            </label>
-            <label for="add-tags">
-                <span ng-init="add.tags = []">Select Tags</span>
-                <button type="button" ng-repeat="(tagKey, tag) in add.tags" ng-click="add.tags.splice(tagKey,1);">x {{tag}}</button>
-                <input id="add-tags" type="text" ng-model="newTag">
-                <button type="button" ng-click="add.tags.push(newTag); newTag = ''">+</button>
-            </label>
-            <div>
-                <h5 ng-init="add.attachContent = []">Attach Content</h5>
-                <span ng-repeat="(contentKey, content) in admin.d.object.content">
-                    <label for="attach-content-{{$index}}">
-                        <input id="attach-content-{{$index}}" type="checkbox" ng-change="attachContent ? add.attachContent.push(contentKey) : add.attachContent.splice(add.attachContent.indexOf(contentKey), 1)" ng-model="attachContent">
-                        {{content.name}}
-                    </label>
-                </span>
-            </div>
-            <label>
-                <button ng-init="add.media = []" type="button" ng-show="!admin.s.show.attachMedia" ng-click="admin.s.show.attachMedia = true">Attach Media
-                </button>
-                <button type="button" ng-show="admin.s.show.attachMedia" ng-click="admin.s.show.attachMedia = false">Done Selecting Media
-                </button>
-                <div ng-if="admin.s.show.attachMedia"
-                     ng-style="{display:'flex', overflow:'scroll', zIndex:9999, background:'rgba(255,255,255,.9)', padding:'20px', width:'50vw', before:'Scroll left'}">
-
-                    <uploader></uploader>
-                    <img
-                            ng-repeat="(fileKey, file) in admin.d.object.media"
-                            ng-init="!attachThumb ? attachThumb = admin.a.get('https://sizzling-fire-2548.firebaseio.com/media/'+ file.name.replace('.','`') + '.json' ) : null"
-                            ng-click="$parent.add.media.indexOf(fileKey) < 0 ? $parent.add.media.push(fileKey) : $parent.add.media.splice($parent.add.media.indexOf(fileKey),1);"
-                            ng-style="{flex:'0 0 auto',width:'80px', height: '80px', border: $parent.add.media.indexOf(fileKey) >=0 ? 'rgba(0,0,0,.3) 2px solid': 'none'}"
-                            ng-show="attachThumb"
-                            ng-src="{{attachThumb.data.data}}" alt="">
-                </div>
-                <div ng-style="{width:'100%', alignText:'center', flex:'0 0 100%'}">
-                    Scroll left and right
-                </div>
-            </label>
-            <button type="button" ng-click="admin.a.add('content', add); add={};">Add entry {{add}}</button>
-        </form>
+        <div ng-style="{margin:0, flex: '1 1 auto'}"><a ui-sref="admin.site">Site</a></div>
     </div>
 
+
     <div ng-style="{width:'80vw', height:'90vh', padding:'1em'}">
-        <div>
-            <div
-                    ng-repeat="(key, val) in admin.d.object.index.sections[admin.s.type]"
-                    ng-style="{background:'rgba(0,0,0,.1)', marginBottom:'10px', padding:'10px'}"
-                    ng-init="oldObject = admin.a.copy(admin.d.object.content[key])">
-                {{admin.d.object.content[key]}}
-                <input type="text" ng-model="admin.d.object.content[key].name">
-                <textarea name="" ng-model="admin.d.object.content[key].content"></textarea>
-                <div>
-                    <span>Select Tags</span>
-                    <button type="button" ng-repeat="(tagKey, tag) in admin.d.object.content[key].tags" ng-click="admin.d.object.content[key].tags.splice(tagKey,1);">x {{tag}}</button>
-                    <input type="text" ng-model="newTag">
-                    <button type="button" ng-click="admin.d.object.content[key].tags.push(newTag); newTag = ''">+</button>
-                </div>
-                <div>
-                    <h5 ng-init="!admin.d.object.content[key].attachContent ? admin.d.object.content[key].attachContent = [] : null">Attach Content</h5>
-                    <span
-                            ng-repeat="(contentKey, content) in admin.d.object.content">
-                        <input
-                                ng-init="attachContent = admin.d.object.content[key].attachContent.indexOf(contentKey) >=0 ? true : false"
-                                ng-change="attachContent ? admin.d.object.content[key].attachContent.push(contentKey) : admin.d.object.content[key].attachContent.splice(admin.d.object.content[key].attachContent.indexOf(contentKey),1); !admin.d.object.content[key].attachContent ? admin.d.object.content[key].attachContent = []: null;"
-                                type="checkbox"
-                                ng-model="attachContent"> {{content.name}}
-                    </span>
-                </div>
 
-                <div>
-                    <h4>Media Attachments</h4>
-                    <div>
-                        <button
-                                type="button"
-                                ng-click="admin.s.show.contentAllMedia = !admin.s.show.contentAllMedia">
-                            Choose from image library
-                        </button>
-                        <div ng-if="admin.s.show.contentAllMedia" ng-style="{display:'flex', justifyContent:'space-between', overflow:'scroll'}">
-                            <uploader></uploader>
-                            <img
-                                    ng-repeat="(fileKey, file) in admin.d.object.media"
-                                    ng-init="!attachThumb ? attachThumb = admin.a.get('https://sizzling-fire-2548.firebaseio.com/media/'+ file.name.replace('.','`') + '.json' ) : null"
-                                    ng-click="admin.d.object.content[key].media.indexOf(fileKey) < 0 ? admin.d.object.content[key].media.push(fileKey): null"
-                                    ng-style="{flex:'0 0 80px',width:'80px', height: '80px', border: admin.d.object.content[key].media.indexOf(fileKey) >=0 ? 'rgba(0,0,0,.3) 2px solid': 'none'}"
-                                    ng-show="attachThumb"
-                                    ng-src="{{attachThumb.data.data}}" alt="">
-                        </div>
-                    </div>
-                    <div>
-                        <h5 ng-init="!admin.d.object.content[key].media ? admin.d.object.content[key].media = []: null">Attached images</h5>
-                        <div ng-style="{display:'flex', flexWrap:'wrap', justifyContent:'space-around'}">
-                            <img
-                                ng-repeat="(fileKey, file) in admin.d.object.content[key].media"
-                                ng-init="!contentThumb ? contentThumb = admin.a.get('https://sizzling-fire-2548.firebaseio.com/media/'+ admin.d.object.media[file].name.replace('.','`') + '.json' ) : null"
-                                ng-click="admin.d.object.content[key].media.splice(fileKey, 1)"
-                                ng-style="{flex:'0 1 auto',width:'320px', height: '320px'}"
-                                ng-show="contentThumb"
-                                ng-src="{{contentThumb.data.data}}" alt=""></div>
-                    </div>
-
-                </div>
-                {{key}}: {{val}}
-                <button
-                        ng-click="admin.a.save('content', key, admin.d.object.content[key], oldObject); oldObject = admin.a.copy(admin.d.object.content[key])"
-                        type="button">Save</button>
+        <div ng-style="{background:'white', zIndex:10}">
+            <div ng-if="admin.s.show.addEntry"
+                 ng-include="'scripts/admin/add-entry.html'">
+            </div>
+            <div ng-if="!admin.s.show.addEntry"
+                 ng-include="'scripts/admin/edit-entries.html'">
+            </div>
+            <div ng-if="admin.s.show.showMedia"
+                 ng-include="'scripts/admin/edit-media.html'">
+            </div>
+            <div ng-if="admin.s.show.editSite"
+                 ng-include="'scripts/admin/edit-site.html'">
+            </div>
+            <div ng-if="admin.s.show.editPosts"
+                 ng-include="'scripts/admin/edit-posts.html'">
             </div>
         </div>
-        <div ng-show="admin.s.showMedia"
-             class="grid"
-             ng-style="{display:'flex', flexFlow:'row wrap', justifyContent:'space-between'}">
-            <div
-                    ng-style="{flex:'1 1 auto'}"
-                    ng-repeat="(key, val) in $parent.admin.d.array.media">
-                <div>
-                    <button type="button" ng-click="admin.a.rm('media', val.$id)">Remove</button>
-                </div>
-                <!-- TODO make next and prev feature for image viewing -->
-                <div><img
-                        ng-style="{height:'160px', background:thumb.data.data + ' no-repeat center center/cover'}"
-                        ng-click="
-                        admin.s.full.thumb = thumb.data.data;
-                        admin.s.full.src = admin.d.object.media[val.$id].src || val.src;
-                        admin.s.full.prev = {thumb: admin.a.get('https://sizzling-fire-2548.firebaseio.com/media/'+ $parent.admin.d.array[$parent.admin.s.type][$index-1].name.replace('.','`')), src:$parent.admin.d.array['media'][$index-1].src};
-                        admin.s.full.next = {thumb: admin.a.get('https://sizzling-fire-2548.firebaseio.com/media/'+ $parent.admin.d.array['media'][$index+1].name.replace('.','`')), src:$parent.admin.d.array['media'][$index+1].src};"
-                        ng-show="thumb"
-                        ng-init="!thumb ? thumb = admin.a.get('https://sizzling-fire-2548.firebaseio.com/media/'+ ( admin.d.object.media[val.$id].name.replace('.','`') || val.name.replace('.','`') ) + '.json' ): null"
-                        ng-src="{{thumb.data.data}}" alt="">
-                    <div ng-if="admin.s.full"
-                         ng-style="{display:'flex', justifyContent:'center', position:'fixed', top:0, bottom:0, left:0, right:0, background:'white', textAlign:'center'}">
-                        <div ng-style="{margin:'0 auto'}">
-                            <img ng-style="{position:'fixed', height:'100vh', width:'auto'}"
-                                 ng-src="{{$parent.admin.s.full.src}}" alt="" ng-click="$parent.admin.s.full = false">
-                            <img ng-style="{margin:'0 auto', height:'100vh', width:'auto'}"
-                                 ng-src="{{$parent.admin.s.full.thumb}}" alt="" ng-click="$parent.admin.s.full = false">
-
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
 </div>
 

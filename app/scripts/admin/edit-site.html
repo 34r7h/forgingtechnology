@@ -1,0 +1,31 @@
+<form ng-init="siteInfo = siteInfo" ng-style="{display:'flex', flexWrap:'wrap', flexDirection:'column'}">
+    {{siteInfo}}
+    <label for="site-name">
+        <h4>Site Name</h4>
+        <input type="text" ng-model="siteInfo.siteName" id="site-name">
+    </label>
+    <label for="phone">
+        <h4>Phone Number</h4>
+        <input type="tel" ng-model="siteInfo.phone" id="phone">
+    </label>
+    <label for="email">
+        <h4>Email</h4>
+        <input type="email" ng-model="siteInfo.email" id="email">
+    </label>
+    <label for="site-description">
+        <h4>Site Description</h4>
+        <textarea type="text" ng-model="siteInfo.siteDescription" id="site-description"></textarea>
+    </label>
+    <label for="site-meta">
+        <h4>Site Meta Tags</h4>
+        <textarea type="text" ng-model="siteInfo.siteMeta" id="site-meta"></textarea>
+    </label>
+    <label for="facebook-page">
+        <h4>Facebook Page</h4>
+        <input type="text" ng-model="siteInfo.facebookPage" id="facebook-page">
+    </label>
+    <hr>
+    <div ng-click="admin.a.saveSite(siteInfo)">
+        <b>SAVE</b>
+    </div>
+</form>

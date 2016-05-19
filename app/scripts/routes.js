@@ -75,9 +75,15 @@ angular.module('numetal')
                 },
                 controllerAs: 'admin'
             })
-            .state('admin.about', {
-                url: '/about',
-                template: '<admin type="about"></admin>'
+            .state('admin.site', {
+                url: '/site',
+                template: '<admin type="site"></admin>',
+                onEnter: function (State) {
+                    State.show.editSite = true;
+                },
+                onExit: function (State) {
+                    State.show.editSite = false;
+                }
             })
             .state('admin.services', {
                 url: '/services',
@@ -87,18 +93,24 @@ angular.module('numetal')
                 url: '/clients',
                 template: '<admin type="clients"></admin>'
             })
-            .state('admin.posts', {
-                url: '/posts',
-                template: '<admin type="posts"></admin>'
-            })
             .state('admin.media', {
                 url: '/media',
                 template: '<admin type="media"></admin>',
                 onEnter: function (State) {
-                    State.showMedia = true;
+                    State.show.showMedia = true;
                 },
                 onExit: function (State) {
-                    State.showMedia = false;
+                    State.show.showMedia = false;
+                }
+            })
+          .state('admin.posts', {
+                url: '/posts',
+                template: '<admin type="posts"></admin>',
+                onEnter: function (State) {
+                    State.show.editPosts = true;
+                },
+                onExit: function (State) {
+                    State.show.editPosts = false;
                 }
             })
             /* STATES-NEEDLE - DO NOT REMOVE THIS */;
