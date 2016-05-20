@@ -1,16 +1,12 @@
-<h2>Edit {{admin.s.type}}</h2>
+<h2 ng-init="oldObj = []">Edit {{admin.s.type}}</h2>
 <div
         ng-repeat="(key, val) in admin.d.object.index.sections[admin.s.type]"
         ng-style="{background:'rgba(0,0,0,.1)', marginBottom:'10px', padding:'10px'}"
-        ng-init="oldObject = admin.a.copy(admin.d.object.content[key])">
-    {{admin.d.object.content[key]}}
+        ng-init="oldObject[$index] = admin.a.copy(admin.d.object.content[key])">
     <h2 ng-show="!admin.s.show.changeName[key]"
-        ng-click="admin.s.show.changeName[key] = !admin.s.show.changeName[key]">
+        ng-click="admin.s.show.changeName[key] = true">
         {{admin.d.object.content[key].name}}</h2>
-    <h2 ng-show="!admin.s.show.changeName[key]"
-        ng-click="admin.s.show.changeName[key] = !admin.s.show.changeName[key]">
-        {{admin.d.object.content[key].name}}</h2>
-    <div><input ng-show="admin.s.show.changeName[key]" type="text"
+    <div><input ng-blur="admin.s.show.changeName[key] = false" ng-show="admin.s.show.changeName[key]" type="text"
                 ng-model="admin.d.object.content[key].name">
         <input type="checkbox" ng-model="admin.d.object.content[key].publish" id="published"> Published
     </div>
@@ -96,7 +92,7 @@
 
     </div>
     <h1
-            ng-click="admin.a.save('content', key, admin.d.object.content[key], oldObject); oldObject = admin.a.copy(admin.d.object.content[key])"
+            ng-click="oldObject[$index] = admin.a.save('content', key, admin.d.object.content[key], oldObject[$index]); "
     >Save</h1>
     <h3 ng-click="admin.a.rm('content', key)">Remove Entry: {{admin.d.object.content[key].name}}</h3>
 </div>

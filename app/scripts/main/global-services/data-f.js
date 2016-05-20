@@ -13,6 +13,7 @@ angular.module('numetal')
 		var fbRef = 'https://sizzling-fire-2548.firebaseio.com/data';
 		var fbMediaRef = 'https://sizzling-fire-2548.firebaseio.com/media';
 		var fb = new Firebase(fbRef);
+		var fbContent = new Firebase(fbRef).child('content');
 		var fbMedia = new Firebase(fbMediaRef);
 		var obj = $firebaseObject(fb);
 		// var media = $firebaseObject(fbMedia);
@@ -27,7 +28,7 @@ angular.module('numetal')
 			// index: {},
 			object: {},
 			array: [],
-			refs: {media: fbMedia, fb: fb}
+			refs: {media: fbMedia, fb: fb, content: fbContent}
 		};
 		obj.$loaded().then(function (fbReady) {
 			data.object = fbReady;

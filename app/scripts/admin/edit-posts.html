@@ -2,21 +2,28 @@
         class="grid"
         ng-style="{display:'flex', flexFlow:'row wrap', justifyContent:'space-between'}">
     <span
-            ng-style="{flex:'1 1 auto', display:'flex', flexDirection:'row', maxWidth:'100%'}"
+            ng-style="{flex:'1 1 auto', display:'flex', flexDirection:'row', justifyContent:'space-between', width:'100%', background:'rgba(0,0,0,.2)', margin:'2px', alignItems:'center', flexWrap:'wrap'}"
             ng-repeat="(key, val) in admin.d.array.posts">
-        <label><input type="checkbox" ng-model="admin.d.object[val.$value][val.$id].publish"><span> Published</span></label>
-        <b>{{admin.d.object[val.$value][val.$id].name}}</b>
-        <b type="button" ng-click="$parent.admin.a.save(val.$value, val.$id, admin.d.object[val.$value][val.$id])">SAVE</b>
-        <!-- TODO make next and prev feature for image viewing -->
-        <span>
-            <code>{{admin.d.object.media[admin.d.object[val.$value][val.$id].media[0]].name}}</code>
-            <img ng-init="postThumb = admin.d.object[val.$value][val.$id].media[0] ? admin.a.get('https://sizzling-fire-2548.firebaseio.com/media/'+ admin.d.object.media[admin.d.object[val.$value][val.$id].media[0]].name.replace('.','`')+ '.json'): admin.a.get('https://sizzling-fire-2548.firebaseio.com/media/'+ admin.d.object.media[val.$id].name.replace('.','`')+ '.json')" alt="" ng-src="{{postThumb ? postThumb.data.data: 'no image'}}" ng-style="{maxHeight:'80px'}">
-
-            <!--<img
-                    ng-style="{width:'100%', background:thumb.data.data + ' no-repeat center center/cover'}"
-                    ng-init="!thumb ? thumb = admin.a.get('https://sizzling-fire-2548.firebaseio.com/media/'+ ( admin.d.object.media[val.$id].name.replace('.','`') ||  admin.object.media[admin.d.object[val.$value][val.$id].media[0]].name.replace('.','`') ) + '.json' ): null; admin.d.object[val.$value][val.$id].media[0] ? thumb = admin.a.get('https://sizzling-fire-2548.firebaseio.com/media/'+ admin.d.object.media[admin.d.object[val.$value][val.$id].media[0]].name.replace('.','`')+'json' ): null"
-                    ng-src="{{thumb.data.data}}" alt="">-->
-            <hr>
+        <span ng-init="postThumb = admin.d.object[val.$value][val.$id].media[0] ? admin.a.get('https://sizzling-fire-2548.firebaseio.com/media/'+ admin.d.object.media[admin.d.object[val.$value][val.$id].media[0]].name.replace('.','`')+ '.json'): admin.a.get('https://sizzling-fire-2548.firebaseio.com/media/'+ admin.d.object.media[val.$id].name.replace('.','`')+ '.json')">
+                <img ng-if="admin.d.object.media[val.$id].name || admin.d.object[val.$value][val.$id].media[0]" alt=""
+                     ng-src="{{postThumb ? postThumb.data.data: 'no image'}}" ng-style="{height:'40px', width:'40px'}">
         </span>
+
+        <i ng-click="admin.s.show.fullPost[$index] = !admin.s.show.fullPost[$index]">{{admin.d.object[val.$value][val.$id].section || val.$value}}</i>
+        <b ng-click="admin.s.show.fullPost[$index] = !admin.s.show.fullPost[$index]">{{admin.d.object[val.$value][val.$id].name}}</b>
+        <label ng-style="{padding:'10px'}">
+            <input type="checkbox" ng-model="admin.d.object[val.$value][val.$id].publish" ng-change="admin.a.save(val.$value, val.$id)">
+            <span> Published</span>
+        </label>
+        <div ng-if="admin.s.show.fullPost[$index]" ng-style="{minWidth:'100%', flex:'0 0 100%'}">
+            <div ng-repeat="(entryKey, entryVal) in admin.d.object[val.$value][val.$id]"><b>{{entryKey}}: </b>{{entryVal}}</div>
+        </div>
+        <!-- TODO make next and prev feature for image viewing -->
+
+
+        <!--<img
+                ng-style="{width:'100%', background:thumb.data.data + ' no-repeat center center/cover'}"
+                ng-init="!thumb ? thumb = admin.a.get('https://sizzling-fire-2548.firebaseio.com/media/'+ ( admin.d.object.media[val.$id].name.replace('.','`') ||  admin.object.media[admin.d.object[val.$value][val.$id].media[0]].name.replace('.','`') ) + '.json' ): null; admin.d.object[val.$value][val.$id].media[0] ? thumb = admin.a.get('https://sizzling-fire-2548.firebaseio.com/media/'+ admin.d.object.media[admin.d.object[val.$value][val.$id].media[0]].name.replace('.','`')+'json' ): null"
+                ng-src="{{thumb.data.data}}" alt="">-->
     </span>
 </div>

@@ -1,2 +1,20 @@
-This is the posts directive.
+<div
+        class="grid"
+        ng-style="{display:'flex', flexFlow:'row wrap', justifyContent:'space-between'}">
+    <a
+            ng-init="params[$index] = {}; params[$index][(metal.d.object[val.$value][val.$id].section || val.$value)] = val.$id"
+            ng-style="{flex:'1 1 auto', display:'flex', flexDirection:'row', justifyContent:'space-between', width:'320px', background:'rgba(0,0,0,.2)', margin:'2px', alignItems:'center', flexWrap:'wrap'}"
+            ng-repeat="(key, val) in metal.d.array.posts"
+            ng-href="{{'#!/'+metal.d.object[val.$value][val.$id].section+'/'+val.$id}}">
+        <span ng-init="postThumb = metal.d.object[val.$value][val.$id].media[0] ? metal.a.get('https://sizzling-fire-2548.firebaseio.com/media/'+ metal.d.object.media[metal.d.object[val.$value][val.$id].media[0]].name.replace('.','`')+ '.json'): metal.a.get('https://sizzling-fire-2548.firebaseio.com/media/'+ metal.d.object.media[val.$id].name.replace('.','`')+ '.json')">
+                <img ng-if="metal.d.object.media[val.$id].name || metal.d.object[val.$value][val.$id].media[0]" alt=""
+                     ng-src="{{postThumb ? postThumb.data.data: 'no image'}}" ng-style="{height:'auto', width:'160px'}">
+            <b>{{metal.d.object[val.$value][val.$id].name}}</b>
+        </span>
 
+
+        <div ng-style="{minWidth:'100%', flex:'0 0 100%'}">
+            <div ng-repeat="(entryKey, entryVal) in metal.d.object[val.$value][val.$id]"><b>{{entryKey}}: </b>{{entryVal}}</div>
+        </div>
+    </a>
+</div>

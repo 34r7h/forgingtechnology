@@ -1,31 +1,30 @@
-<form ng-init="siteInfo = siteInfo" ng-style="{display:'flex', flexWrap:'wrap', flexDirection:'column'}">
-    {{siteInfo}}
+<div ng-style="{display:'flex', flexWrap:'wrap', flexDirection:'column'}">
     <label for="site-name">
         <h4>Site Name</h4>
-        <input type="text" ng-model="siteInfo.siteName" id="site-name">
+        <input type="text" ng-model=" admin.d.object.site.siteName" id="site-name">
     </label>
     <label for="phone">
         <h4>Phone Number</h4>
-        <input type="tel" ng-model="siteInfo.phone" id="phone">
+        <input type="tel" ng-model=" admin.d.object.site.phone" id="phone">
     </label>
     <label for="email">
         <h4>Email</h4>
-        <input type="email" ng-model="siteInfo.email" id="email">
+        <input type="email" ng-model=" admin.d.object.site.email" id="email">
     </label>
     <label for="site-description">
         <h4>Site Description</h4>
-        <textarea type="text" ng-model="siteInfo.siteDescription" id="site-description"></textarea>
+        <textarea type="text" ng-model=" admin.d.object.site.siteDescription" id="site-description"></textarea>
     </label>
     <label for="site-meta">
         <h4>Site Meta Tags</h4>
-        <textarea type="text" ng-model="siteInfo.siteMeta" id="site-meta"></textarea>
+        <textarea type="text" ng-model=" admin.d.object.site.siteMeta" id="site-meta"></textarea>
     </label>
     <label for="facebook-page">
         <h4>Facebook Page</h4>
-        <input type="text" ng-model="siteInfo.facebookPage" id="facebook-page">
+        <input type="text" ng-model=" admin.d.object.site.facebookPage" id="facebook-page">
     </label>
     <hr>
-    <div ng-click="admin.a.saveSite(siteInfo)">
+    <div ng-click="admin.a.saveSite( admin.d.object.site)">
         <b>SAVE</b>
     </div>
-</form>
+</div>

@@ -7,10 +7,28 @@
  */
 
 angular.module('numetal')
-	.factory('Api', function ($http, $state, Data, $firebaseObject, $timeout, State) {
+	.factory('Api', function ($http, $state, Data, $firebaseObject, $firebaseAuth, $timeout, State, $rootScope) {
 		'use strict';
-
+		$rootScope.debug = true;
 		var api = {
+			login: function (email, pass) {
+				var fbAuth = $firebaseAuth(Data.refs.fb);
+				fbAuth.$authWithPassword({email:email, password:pass}).then(function(authData) {
+					console.log("Logged in as:", authData.uid);
+					State.auth = authData;
+				}).catch(function(error) {
+					console.error("Authentication failed:", error);
+				});
+			},
+			logout: function () {
+				State.auth.$unauth();
+				State.auth = null;
+			},
+			log: function(msg, description){
+					return $rootScope.debug ? typeof msg === 'object' ? angular.forEach(msg, function(ms, msKey){
+						console.log('%c'+msKey+': '+ms, 'background:#aaaaaa; color:#fefefe, padding:10px', description)
+					}) : console.log('%c'+msg, 'background:#aaaaaa; color:#fefefe, padding:10px', description) : null;
+			},
 			copy: function (obj) {
 				return angular.copy(obj);
 			},
@@ -22,6 +40,7 @@ angular.module('numetal')
 				return returnData;
 			},
 			go: function (state, params) {
+				api.log(arguments);
 				$state.go(state, params);
 				$state.reload(state);
 			},
@@ -47,13 +66,18 @@ angular.module('numetal')
 
 						Data.object.index[type][ref.key()] = true;
 
-						var uniqueTags = [];
-						obj.tags ? angular.forEach(obj.tags, function (tag) {
-							uniqueTags.indexOf(tag) === -1 ? uniqueTags.push(tag) : null;
-							!Data.object.index.tags ? Data.object.index.tags = {} : null;
-							!Data.object.index.tags[tag] ? (Data.object.index.tags[tag] = {}, Data.object.index.tags[tag][ref.key()] = true) : Data.object.index.tags[tag][ref.key()] = true;
-						}) : null;
-						obj.tags = uniqueTags;
+						var uniqueTags = ['metal'];
+						function setTags(){
+							angular.forEach(obj.tags, function (tag) {
+								uniqueTags.indexOf(tag) === -1 ? uniqueTags.push(tag) : null;
+								!Data.object.index.tags ? Data.object.index.tags = {} : null;
+								!Data.object.index.tags[tag] ? (Data.object.index.tags[tag] = {}, Data.object.index.tags[tag][ref.key()] = true) : Data.object.index.tags[tag][ref.key()] = true;
+							});
+							obj.tags = uniqueTags;
+						}
+
+						obj.tags = obj.tags ? setTags() : uniqueTags;
+
 
 						Data.object.posts[ref.key()] = type;
 						Data.object.$save();
@@ -66,6 +90,11 @@ angular.module('numetal')
 			},
 			rm: function (type, id) {
 				/**/
+
+				type === 'media' ? deleteFile() : null;
+
+				type !== 'media' ? removeContent() : null;
+
 				function deleteFile() {
 					var creds = {
 						// TODO: Get process VARS from Heroku
@@ -91,6 +120,9 @@ angular.module('numetal')
 						}
 					});
 					Data.media = $firebaseObject(Data.refs.media).$loaded().then(function (data) {
+						Data.object.media[id].tags ? angular.forEach(Data.object.media[id].tags, function (tag) {
+							Data.object.index.tags[tag][id]=null;
+						}) : null;
 						data[Data.object[type][id].name.replace('.', '`')] = null;
 						Data.object[type][id] = null;
 						Data.object.posts[id] = null;
@@ -99,10 +131,6 @@ angular.module('numetal')
 						data.$save();
 					});
 				}
-
-				type === 'media' ? deleteFile() : null;
-
-				type !== 'media' ? removeContent() : null;
 
 				function removeContent(){
 					angular.forEach(Data.object.content[id].tags, function (tag) {
@@ -123,52 +151,59 @@ angular.module('numetal')
 				}, function(error) {
 					console.log("Error:", error);
 				});
-
-
-				/*!Data.array.site ? Data.array.site = {} : null;
-				// var fbSite = $firebaseObject(Data.refs.fb);
-				/!*angular.forEach(siteObj, function (siteVal, siteKey) {
-					console.log(siteKey, siteVal);
-					Data.object.site[siteKey] = siteVal;
-				});*!/
-				$timeout(function () {
-					console.log('saving site info', Data.object.site);
-					Data.array.$add({site:siteObj});
-				}, 4000);*/
 			},
 			save: function (type, id, newObj, oldObj) {
 
-				oldObj ? (tagCheck(), sectionCheck()): null;
+				var check = {};
+				!newObj ? newObj = Data.object[type][id] : null;
+				!oldObj ? oldObj = newObj : null;
 
-				Data.object[type][id] = newObj;
+				JSON.stringify(oldObj.tags) !== JSON.stringify(newObj.tags) ? tagCheck(): check.tags = true;
+				JSON.stringify(oldObj.section) !== JSON.stringify(newObj.section) ? sectionCheck(): check.sections = true;
 
-				$timeout(function () {
-					Data.object.$save();
-				}, 4000);
+				function saveAfterChecks(){
+					var saveObj = $firebaseObject(Data.refs.fb.child(type)).$loaded().then(function (data) {
+							data[id] = newObj;
+							data.$save().then(function(ref) {
+								return data[id];
+							}, function(error) {
+								console.log("Error:", error);
+							});
+
+					});
+				}
+				function checksReady(){
+					check.tags && check.sections ? saveAfterChecks() : $timeout(function () {
+					checksReady();
+				},1000);}
 
 				function sectionCheck(){
 					newObj.section !== oldObj.section ? (Data.object.index.sections[oldObj.section][id] = null, Data.object.index.sections[newObj.section][id] = true) : null;
+					return check.sections = true;
 				}
+
 				function tagCheck() {
 					console.log('checking tags', oldObj.tags, newObj.tags);
 					var uniqueTags = [];
 					angular.forEach(newObj.tags, function (newTag) {
+						!Data.object.index.tags ? Data.object.index.tags = {}: null;
 						uniqueTags.indexOf(newTag) === -1 ? uniqueTags.push(newTag) : null;
 						!Data.object.index.tags[newTag] ? Data.object.index.tags[newTag] = {} : null;
 						Data.object.index.tags[newTag][id] = true;
+					});
+					angular.forEach(uniqueTags, function (newTag) {
 						angular.forEach(oldObj.tags, function (oldTag) {
 							console.log(newTag, oldTag);
 							newObj.tags.indexOf(oldTag) < 0 ? Data.object.index.tags[oldTag][id] = null : null;
 						});
 					});
 					newObj.tags = uniqueTags;
-				}
-				/*function siteCheck() {
-					angular.forEach(newObj, function (siteVal, siteKey) {
-						Data.object.site[siteKey] = siteVal;
-					});
 					Data.object.$save();
-				}*/
+					return check.tags = true;
+				}
+				checksReady();
+				return newObj;
+
 			}
 			,
 			msg: function (msg) {

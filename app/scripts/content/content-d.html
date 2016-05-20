@@ -1,6 +1,47 @@
 <h2>{{metal.s.type + ' view' | uppercase}}</h2>
+<div
+        ng-repeat="(key, val) in metal.d.object.index.sections[metal.s.type]"
+        ng-style="{background:'rgba(0,0,0,.1)', marginBottom:'10px', padding:'10px'}"
+        ng-init="oldObject[$index] = metal.a.copy(metal.d.object.content[key])">
+    <h2>
+        {{metal.d.object.content[key].name}}
+    </h2>
+    <div>{{metal.d.object.content[key].text}}</div>
 
-<div>
+    <div>
+        <span ng-init="!metal.d.object.content[key].tags ? metal.d.object.content[key].tags = [] : null">Select Tags</span>
+        <div ng-style="{display:'flex', flexWrap:'wrap', justifyContent:'flex-start'}">
+                        <span
+                                ng-repeat="(tagKey, tag) in metal.d.object.content[key].tags track by $index"
+                                ng-style="{border:'1px solid black', margin:'2px'}">
+                            <b ng-style="{background:'white', padding:'0 1px'}"> {{tag}}</b>
+                        </span>
+        </div>
+
+    </div>
+
+    <div>
+            <span ng-repeat="(contentKey, content) in metal.d.object.content[key].content">
+                <img ng-init="metal.d.object.media[metal.d.object.content[content].media[0]].name ? contentThumb = metal.a.get('https://sizzling-fire-2548.firebaseio.com/media/'+ metal.d.object.media[metal.d.object.content[content].media[0]].name.replace('.','`') + '.json') : null" ng-if="metal.d.object.media[metal.d.object.content[content].media[0]].name" ng-src="{{contentThumb.data.data}}" alt="">
+                <b>{{metal.d.object.content[content].media[0]}}</b>
+                <p>{{metal.d.object.media[metal.d.object.content[content].media[0]].name}}</p>
+        <div>{{metal.d.object.content[content].text}}</div>
+            </span>
+    </div>
+
+    <div>
+        <div ng-style="{display:'flex', flexWrap:'wrap', justifyContent:'space-around'}">
+            <img
+                    ng-repeat="(fileKey, file) in metal.d.object.content[key].media"
+                    ng-init="!contentThumb ? contentThumb = metal.a.get('https://sizzling-fire-2548.firebaseio.com/media/'+ metal.d.object.media[file].name.replace('.','`') + '.json' ) : null"
+                    ng-style="{flex:'0 1 auto',width:'160px', height: '160px'}"
+                    ng-show="contentThumb"
+                    ng-src="{{contentThumb.data.data}}" alt=""></div>
+    </div>
+
+</div>
+
+<!-- <div>
     <div ng-repeat="(contentKey, content) in metal.d.object.index[metal.s.type]">
         <a ng-href="{{'#/'+ metal.s.type + '/' + contentKey}}">{{contentKey}} - {{content}}</a>
         <button ng-click="metal.a.rm(metal.s.type, contentKey)">
@@ -14,6 +55,6 @@
             <code>{{metal.d.object[metal.s.type][content]}}</code>
         </div>
     </div>
-</div>
+</div> -->
 
 <ui-view></ui-view>
