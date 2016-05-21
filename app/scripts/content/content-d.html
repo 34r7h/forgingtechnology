@@ -1,4 +1,4 @@
-<h2>{{metal.s.type | uppercase}}</h2>
+<h2>{{metal.s.type | uppercase}} <b>{{metal.d.object.content[metal.s.params].name}}</b></h2>
 <ui-view></ui-view>
 <div
         ng-show="metal.s.state.current.url.indexOf(':') < 0 && metal.d.object.content[key].publish"
