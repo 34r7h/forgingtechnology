@@ -17,7 +17,7 @@ angular.module('numetal')
 		var fbMedia = new Firebase(fbMediaRef);
 		var obj = $firebaseObject(fb);
 		// var media = $firebaseObject(fbMedia);
-		var types = ['content', 'site', 'media', 'posts'];
+		var types = ['content', 'site', 'media', 'posts', 'index'];
 		var arrObj = {};
 		for (var typeNumber = types.length-1; typeNumber >= 0; typeNumber--) {
 			arrObj[types[typeNumber]] = $firebaseArray(fb.child(types[typeNumber]));
@@ -25,7 +25,7 @@ angular.module('numetal')
 		}
 		// ACTUAL DEFINITION
 		var data = {
-			// index: {},
+			index: {},
 			object: {},
 			array: [],
 			refs: {media: fbMedia, fb: fb, content: fbContent}

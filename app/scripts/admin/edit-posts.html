@@ -4,20 +4,25 @@
     <span
             ng-style="{flex:'1 1 auto', display:'flex', flexDirection:'row', justifyContent:'space-between', width:'100%', background:'rgba(0,0,0,.2)', margin:'2px', alignItems:'center', flexWrap:'wrap'}"
             ng-repeat="(key, val) in admin.d.array.posts">
-        <span ng-init="postThumb = admin.d.object[val.$value][val.$id].media[0] ? admin.a.get('https://sizzling-fire-2548.firebaseio.com/media/'+ admin.d.object.media[admin.d.object[val.$value][val.$id].media[0]].name.replace('.','`')+ '.json'): admin.a.get('https://sizzling-fire-2548.firebaseio.com/media/'+ admin.d.object.media[val.$id].name.replace('.','`')+ '.json')">
+        <span
+                ng-init="postThumb = admin.d.object[val.$value][val.$id].media[0] ? admin.a.get('https://sizzling-fire-2548.firebaseio.com/media/'+ admin.d.object.media[admin.d.object[val.$value][val.$id].media[0]].name.replace('.','`')+ '.json'): admin.a.get('https://sizzling-fire-2548.firebaseio.com/media/'+ admin.d.object.media[val.$id].name.replace('.','`')+ '.json')" ng-style="{display:'flex', justifyContent:'space-between', alignItems:'center'}">
                 <img ng-if="admin.d.object.media[val.$id].name || admin.d.object[val.$value][val.$id].media[0]" alt=""
-                     ng-src="{{postThumb ? postThumb.data.data: 'no image'}}" ng-style="{height:'40px', width:'40px'}">
+                     ng-src="{{postThumb ? postThumb.data.data: 'no image'}}" ng-style="{height:'80px', width:'80px', objectFit:'cover'}">
+            <b
+                    ng-style="{padding:'10px'}"
+                    ng-click="admin.s.show.fullPost[$index] = !admin.s.show.fullPost[$index]">{{admin.d.object[val.$value][val.$id].section || val.$value | uppercase}}</b>
         </span>
 
-        <i ng-click="admin.s.show.fullPost[$index] = !admin.s.show.fullPost[$index]">{{admin.d.object[val.$value][val.$id].section || val.$value}}</i>
-        <b ng-click="admin.s.show.fullPost[$index] = !admin.s.show.fullPost[$index]">{{admin.d.object[val.$value][val.$id].name}}</b>
+        <p ng-style="{maxWidth:'50%'}" ng-click="admin.s.show.fullPost[$index] = !admin.s.show.fullPost[$index]">{{admin.d.object[val.$value][val.$id].name}}</p>
         <label ng-style="{padding:'10px'}">
-            <input type="checkbox" ng-model="admin.d.object[val.$value][val.$id].publish" ng-change="admin.a.save(val.$value, val.$id)">
+            <input type="checkbox" ng-model="admin.d.object[val.$value][val.$id].publish"
+                   ng-change="admin.a.save(val.$value, val.$id)">
             <span> Published</span>
         </label>
-        <div ng-if="admin.s.show.fullPost[$index]" ng-style="{minWidth:'100%', flex:'0 0 100%'}">
-            <div ng-repeat="(entryKey, entryVal) in admin.d.object[val.$value][val.$id]"><b>{{entryKey}}: </b>{{entryVal}}</div>
-        </div>
+        <label for="edit-text" ng-style="{padding:'10px'}">
+            <textarea id="edit-text" ng-model="admin.d.object[val.$value][val.$id].text"></textarea>
+        </label>
+        <h4 ng-click="admin.a.save(val.$value, val.$id)"> Save</h4>
         <!-- TODO make next and prev feature for image viewing -->
 
 

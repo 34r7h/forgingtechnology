@@ -40,7 +40,6 @@ angular.module('numetal')
 				return returnData;
 			},
 			go: function (state, params) {
-				api.log(arguments);
 				$state.go(state, params);
 				$state.reload(state);
 			},
