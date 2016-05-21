@@ -15,10 +15,7 @@ angular.module('numetal')
 
         // ACTUAL DEFINITION
         var service = {
-            xy: function () {
-                return [$window.innerWidth,$window.innerHeight];
-            }
-
+            xy: [$window.innerWidth,$window.innerHeight]
         };
 
         return service;

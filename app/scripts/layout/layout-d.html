@@ -1,42 +1,49 @@
-<div ng-style="{width:'100vw', height:'80px', display:'flex', justifyContent:'space-between', alignItems:'center', position:'fixed', background:'#333'}">
-    <div ng-style="{display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'center', padding:'10px', background:'#f2686f' }">
+<div class="dark-bg-rev" ng-style="{background:'#282828', width:'100vw', height:'80px', display:'flex', justifyContent:'space-between', alignItems:'center', position:'fixed'}">
+    <div class="red-bg" ui-sref=".home" ng-style="{display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'center', padding:'10px' }">
         <img ng-style="{height:'60px', width:'60px'}" src="images/forgingtechnology-logo.png"
              alt="">
         <span ng-style="{display:'flex', justifyContent:'flex-start', alignItems:'flex-start', flexDirection:'column'}">
-            <h1 ui-sref=".home" ng-style="{margin:0}">
+            <h1 ng-style="{margin:0, fontSize:metal.u.xy[0]>=817 ? '34px' : '20px'}">
                 Forging Technology
             </h1>
-            <b>Vancouver Metal Work</b>
-
+            <b ng-show="metal.u.xy[0]>=817">Vancouver Metal Work</b>
         </span>
     </div>
-    <div ng-style="{display:'flex', flexDirection:'column', alignItems:'center'}">
-        <h2 type="button" ng-style="{margin:0}" ng-click="metal.s.connect = !metal.s.connect">Connect With
-            Us
-        </h2>
-        <div ng-style="{textAlign:'right'}"><a ng-href="tel:{{metal.d.object.site.phone}}"><b>{{metal.d.object.site.phone}}</b></a>
+    <div ng-style="{display:'flex', flexDirection:'column', alignItems:'flex-end', padding:'10px', flex:'1 1 auto'}">
+        <div ng-if="metal.u.xy[0]>=817" ng-style="{justifyContent:'space-around', display:'flex', margin:'2px', width:'100%'}">
+            <a ng-style="{margin:'0 2px'}" target="_blank" ng-href="{{'mailto:'+metal.d.object.site.email}}"><i class="fa fa-envelope"></i> {{metal.d.object.site.email}}</a>
+            <b  ng-style="{margin:'0 4px'}">  </b>
+            <a ng-style="{margin:'0 4px'}" ng-href="tel:{{metal.d.object.site.phone}}"><b><i class="fa fa-phone"></i> {{metal.d.object.site.phone}}</b></a>
         </div>
+        <span ng-style="{display:'flex', alignItems:'center', justifyContent:'space-between', width:(metal.u.xy[0]<817 && metal.u.xy[0]>500) ? '100%': 'inherit'}">
+            <b ng-show="metal.u.xy[0]<817 && metal.u.xy[0]>500 ">Vancouver Metal Work</b>
+            <h3 class="button" ng-style="{margin:0, fontSize:metal.u.xy[0]>=817 ? '22px' : '18px', alignSelf:'flex-end'}" ng-click="metal.s.connect = !metal.s.connect"><i class=" fa fa-plug"></i> Let's Connect
+        </h3>
+        </span>
+
     </div>
 </div>
 <div ng-style="{display:'flex'}">
-    <div ng-style="{width:'80px', height:'90vh', padding:'1em', display:'flex', justifyContent:'space-between', alignItems:'center', alignContent:'center', flexDirection:'column', position:'fixed', top:'80px', background:'#333'}">
-        <div ng-style="{margin:0, flex: '1 1 auto', display:'flex', justifyContent:'center', alignItems:'center'}">
-            <a class="fa fa-home"
-                ui-sref="metal.home">Home</a></div>
-        <div ng-style="{margin:0, flex: '1 1 auto', display:'flex', justifyContent:'center', alignItems:'center'}"><a
-                ui-sref="metal.services">Services</a></div>
-        <div ng-style="{margin:0, flex: '1 1 auto', display:'flex', justifyContent:'center', alignItems:'center'}"><a
-                ui-sref="metal.clients">Clients</a></div>
-        <div ng-style="{margin:0, flex: '1 1 auto', display:'flex', justifyContent:'center', alignItems:'center'}"><a
-                ui-sref="metal.gallery">Gallery</a></div>
-        <div ng-style="{margin:0, flex: '1 1 auto', display:'flex', justifyContent:'center', alignItems:'center'}"><a
-                ui-sref="metal.about">About</a></div>
-        <div ng-style="{margin:0, flex: '1 1 auto', display:'flex', justifyContent:'center', alignItems:'center'}"><a
-                ui-sref="admin.posts">Admin</a></div>
-    </div>
-    <div ng-style="{position:'fixed', left: '80px', top:'82px', overflow:'scroll', width:'90vw', padding:'1em', height:'100%'}">
+    <div ng-style="{width:metal.u.xy[0]<817?'80px':'160px', height:'90vh', padding:'2px', display:'flex', justifyContent:'space-between', alignItems:'center', alignContent:'center', flexDirection:'column', position:'fixed', top:'80px', background:'#333'}"
+    ng-init="nav = [{name:'home', icon:'home'},{name:'services', icon:'gavel'},{name:'clients', icon:'users'},{name:'gallery', icon:'image'},{name:'about', icon:'info'},{name:'admin/posts', icon:'gears'},]">
+
+        <a ng-href="#!{{link.name == 'home' ? '/' : '/'+ link.name}}" ng-repeat="link in nav" ng-style="{margin:0, flex: '1 1 auto', display:'flex', justifyContent:'center', alignItems:'center', width: '100%'}" class="dark-bg-rev" ng-mouseover="showLink = true;" ng-mouseleave="showLink = false">
+            <p ng-style="{display:'flex', alignContent:'center', flexDirection:'column', textAlign:'center'}">
+                <i ng-hide="metal.u.xy[0]<817 && showLink" class="fa {{metal.u.xy[0]>=817 ? 'fa-2x': null}} fa-{{link.icon}}"></i>
+                <span ng-style="{fontSize: metal.u.xy[0]>=817 ? '20px' : '14px'}" ng-show="metal.u.xy[0]>=817 || showLink">{{link.name | uppercase}}</span>
+            </p>
+    </a>
+    <div class="dark-bg" ng-style="{position:'fixed', left: metal.u.xy[0] <817 ? '80px': '160px', top:'80px', overflow:'scroll', width:(metal.u.xy[0]-(metal.u.xy[0] < 817 ? 80 : 160))+'px', padding:'1em', height:(metal.u.xy[1]-(metal.u.xy[0] < 817 ? 160:80)) +'px'}">
         <connect ng-show="metal.s.connect"></connect>
         <ui-view></ui-view>
     </div>
+    <div class="dark-bg-rev" ng-if="metal.u.xy[0] < 817"
+         ng-style="{backgroundColor:'#000',position:'fixed', left: '80px', bottom:0, width:(metal.u.xy[0]-80)+'px', padding:'1em', height:'80px'}">
+        <div ng-style="{display:'flex', justifyContent:'space-between', alignItems:'center', padding:'10px'}">
+                <a target="_blank" ng-href="{{'mailto:'+metal.d.object.site.email}}"><i class="fa fa-envelope"></i> {{metal.d.object.site.email}}</a>
+                <a ng-href="tel:{{metal.d.object.site.phone}}"><i class="fa fa-phone"></i>{{metal.d.object.site.phone}}</a>
+        </div>
+    </div>
 </div>
 
+</div>

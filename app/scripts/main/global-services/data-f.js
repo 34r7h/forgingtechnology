@@ -6,17 +6,19 @@
  * Factory in the numetal.
  */
 angular.module('numetal')
-	.factory('Data', function ($firebaseObject, $firebaseArray, $firebaseAuth) {
+	.factory('Data', function ($firebaseObject, $firebaseArray, $firebaseAuth, State) {
 		'use strict';
 
 		// INITIALIZATION
 		var fbRef = 'https://sizzling-fire-2548.firebaseio.com/data';
 		var fbMediaRef = 'https://sizzling-fire-2548.firebaseio.com/media';
 		var fb = new Firebase(fbRef);
+		var fbAuthRef = new Firebase('https://sizzling-fire-2548.firebaseio.com');
+		var authData = $firebaseAuth(fbAuthRef);
+		State.auth = authData.$getAuth();
 		var fbContent = new Firebase(fbRef).child('content');
 		var fbMedia = new Firebase(fbMediaRef);
 		var obj = $firebaseObject(fb);
-		// var media = $firebaseObject(fbMedia);
 		var types = ['content', 'site', 'media', 'posts', 'index'];
 		var arrObj = {};
 		for (var typeNumber = types.length-1; typeNumber >= 0; typeNumber--) {

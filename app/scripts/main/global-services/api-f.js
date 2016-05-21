@@ -7,10 +7,27 @@
  */
 
 angular.module('numetal')
-	.factory('Api', function ($http, $state, Data, $firebaseObject, $firebaseAuth, $timeout, State, $rootScope) {
+	.factory('Api', function ($http, $state, Data, $firebaseObject, $firebaseAuth, $firebaseArray, $timeout, State, $rootScope) {
 		'use strict';
 		$rootScope.debug = true;
 		var api = {
+			email: function(subject, text, from) {
+				var msgRef = new Firebase('https://sizzling-fire-2548.firebaseio.com/messages');
+				var msg = $firebaseArray(msgRef).$loaded().then(function (data) {
+					data.$add({subject:subject, text:text, from: from}).then(function (ref) {
+						console.log(ref);
+						var getMsg = $firebaseAuth(Data.refs.fb);
+						getMsg.$resetPassword({
+							email: "masukmetaldesign+forgingtechnology@gmail.com"
+						}).then(function() {
+							console.log("Password reset email sent successfully!");
+						}).catch(function(error) {
+							console.error("Error: ", error);
+						});
+					})
+				});
+
+		},
 			login: function (email, pass) {
 				var fbAuth = $firebaseAuth(Data.refs.fb);
 				fbAuth.$authWithPassword({email:email, password:pass}).then(function(authData) {
@@ -21,6 +38,8 @@ angular.module('numetal')
 				});
 			},
 			logout: function () {
+				var userRef = new Firebase('https://sizzling-fire-2548.firebaseio.com');
+				State.auth = $firebaseAuth(userRef);
 				State.auth.$unauth();
 				State.auth = null;
 			},
@@ -143,8 +162,10 @@ angular.module('numetal')
 				}
 			},
 			saveSite: function (siteObj) {
-				var obj = $firebaseObject(Data.refs.fb);
-				obj.site = siteObj;
+				var obj = $firebaseObject(Data.refs.fb.child('site'));
+				angular.forEach(siteObj, function (siteVal, siteKey) {
+					obj[siteKey] = siteVal;
+				});
 				obj.$save().then(function(ref) {
 					ref.key() === obj.$id; // true
 				}, function(error) {
@@ -203,8 +224,7 @@ angular.module('numetal')
 				checksReady();
 				return newObj;
 
-			}
-			,
+			},
 			msg: function (msg) {
 				var timeStart = performance.now();
 				console.log(performance.now() - timeStart, msg);

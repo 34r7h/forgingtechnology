@@ -38,12 +38,12 @@
                         placeholder="New Tag"
                         ng-change="newTag.indexOf(',') !== -1 ? clearTag = true: null; newTag.indexOf(',') !== -1 ? add.tags.push(newTag.replace(',','')) : null; clearTag ? newTag = null : null; clearTag = false"
                         ng-blur="newTag.length > 0 ? clearTag = true: null; newTag.length > 0 ? add.tags.push(newTag): null; clearTag ? newTag = null: null; clearTag = false">
-                    <span
+                    <span   class="danger"
                             ng-repeat="(tagKey, tag) in add.tags track by $index"
                             ng-style="{border:'1px solid black', margin:'2px'}"
                             ng-click="add.tags.splice(tagKey,1);">
                             <span ng-style="{color:'white', background:'black', padding:'0 1px'}">x</span>
-                            <b ng-style="{background:'white', padding:'0 1px'}"> {{tag}}</b>
+                            <b ng-style="{color:'black',background:'white', padding:'0 1px'}"> {{tag}}</b>
                     </span>
             </div>
         </label>
@@ -77,12 +77,12 @@
     </span>
         <label ng-style="addFlex" for="publish">
             <h4>Publish</h4>
-            <input type="checkbox" ng-model="add.publish" id="publish"> Yes, publish this now.
+            <input ng-init="add.publish=true" type="checkbox" ng-model="add.publish" id="publish"> Yes, publish this now.
         </label>
         <div ng-style="addFlex">
-            <div ng-style="{width:'100%', border:'1px solid', margin:'20px 0', textAlign:'center'}">
-                <h1 ng-show="add.name" ng-click="admin.a.add('content', add); add={};">Add entry</h1>
-                <p ng-show="!add.name" ng-style="{color:'red'}">* Entries must have a name.</p>
+            <div ng-style="{width:'100%'}">
+                <p class="save" ng-show="add.name" ng-click="admin.a.add('content', add); add={};"><i class="fa fa-plus"> </i> Add entry</p>
+                <p class="disabled" ng-show="!add.name" ng-style="{color:'red'}">* Entries must have a name.</p>
             </div>
         </div>
     </div>

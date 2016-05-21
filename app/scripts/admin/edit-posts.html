@@ -15,14 +15,14 @@
 
         <p ng-style="{maxWidth:'50%'}" ng-click="admin.s.show.fullPost[$index] = !admin.s.show.fullPost[$index]">{{admin.d.object[val.$value][val.$id].name}}</p>
         <label ng-style="{padding:'10px'}">
-            <input type="checkbox" ng-model="admin.d.object[val.$value][val.$id].publish"
+            <input class="save" type="checkbox" ng-model="admin.d.object[val.$value][val.$id].publish"
                    ng-change="admin.a.save(val.$value, val.$id)">
             <span> Published</span>
         </label>
         <label for="edit-text" ng-style="{padding:'10px'}">
             <textarea id="edit-text" ng-model="admin.d.object[val.$value][val.$id].text"></textarea>
         </label>
-        <h4 ng-click="admin.a.save(val.$value, val.$id)"> Save</h4>
+        <h4 class="save" ng-click="admin.a.save(val.$value, val.$id)"><i class="fa fa-floppy-o"> </i>  Save</h4>
         <!-- TODO make next and prev feature for image viewing -->
 
 

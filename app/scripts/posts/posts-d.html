@@ -2,9 +2,10 @@
         class="grid"
         ng-style="{display:'flex', flexFlow:'row wrap', justifyContent:'space-between'}">
     <div
+            class="dark-bg-rev"
             ng-show="metal.d.object[val.$value][val.$id].publish"
             ng-init="params[$index] = {}; params[$index][(metal.d.object[val.$value][val.$id].section || val.$value)] = val.$id"
-            ng-style="{flex:'1 1 auto', display:'flex', flexDirection:'row', justifyContent:'space-between', width:'320px', background:'rgba(0,0,0,.2)', margin:'6px', alignItems:'center', flexWrap:'wrap'}"
+            ng-style="{flex:'1 1 auto', display:'flex', flexDirection:'row', justifyContent:'space-between', width:'320px', margin:'6px', alignItems:'center', flexWrap:'wrap'}"
             ng-repeat="(key, val) in metal.d.array.posts | filter:{$value:'!media'}">
         <div ng-style="{width:'100%', padding:'10px', display:'flex', justifyContent:'space-between'}">
             <i>{{metal.d.object[val.$value][val.$id].section | uppercase}}</i>

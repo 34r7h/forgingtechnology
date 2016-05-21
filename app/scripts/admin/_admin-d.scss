@@ -2,27 +2,27 @@ admin {
 
 }
 
-admin input[type=text], admin input[type=tel], admin input[type=password], admin input[type=email] {
+ input[type=text],  input[type=tel],  input[type=password],  input[type=email] {
   width:100%;
   padding:10px;
   font-size: 18px;
   min-width: 160px;
 }
-admin input[type=file] {
+ input[type=file] {
   width:100%;
   padding:10px;
   font-size: 18px;
   max-height:40px;
 }
 
-admin textarea {
+ textarea {
   width:100%;
   padding:10px;
   font-size:16px;
   max-width: 320px;
 }
 
-admin select {
+ select {
   padding:10px;
   font-size:18px;
 }

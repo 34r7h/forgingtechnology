@@ -114,6 +114,16 @@ angular.module('numetal')
 					State.show.showMedia = false;
 				}
 			})
+			.state('admin.messages', {
+				url: '/messages',
+				template: '<admin></admin>',
+				onEnter: function (State) {
+					State.show.messages = true;
+				},
+				onExit: function (State) {
+					State.show.messages = false;
+				}
+			})
 			.state('admin.posts', {
 				url: '/posts',
 				template: '<admin type="posts"></admin>',
