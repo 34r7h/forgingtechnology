@@ -18,11 +18,11 @@ angular.module('numetal')
 						console.log(ref);
 						var getMsg = $firebaseAuth(Data.refs.fb);
 						getMsg.$resetPassword({
-							email: "masukmetaldesign+forgingtechnology@gmail.com"
+							email: 'masukmetaldesign+forgingtechnology@gmail.com'
 						}).then(function() {
-							console.log("Password reset email sent successfully!");
+							console.log('Password reset email sent successfully!');
 						}).catch(function(error) {
-							console.error("Error: ", error);
+							console.error('Error: ', error);
 						});
 					})
 				});
@@ -31,10 +31,10 @@ angular.module('numetal')
 			login: function (email, pass) {
 				var fbAuth = $firebaseAuth(Data.refs.fb);
 				fbAuth.$authWithPassword({email:email, password:pass}).then(function(authData) {
-					console.log("Logged in as:", authData.uid);
+					console.log('Logged in as:', authData.uid);
 					State.auth = authData;
 				}).catch(function(error) {
-					console.error("Authentication failed:", error);
+					console.error('Authentication failed:', error);
 				});
 			},
 			logout: function () {
@@ -131,10 +131,10 @@ angular.module('numetal')
 					};
 					bucketInstance.deleteObject(params, function (err, data) {
 						if (data) {
-							// console.log("File deleted successfully");
+							// console.log('File deleted successfully');
 						}
 						else {
-							console.log("Check if you have sufficient permissions : " + err);
+							console.log('Check if you have sufficient permissions : ' + err);
 						}
 					});
 					Data.media = $firebaseObject(Data.refs.media).$loaded().then(function (data) {
@@ -169,7 +169,7 @@ angular.module('numetal')
 				obj.$save().then(function(ref) {
 					ref.key() === obj.$id; // true
 				}, function(error) {
-					console.log("Error:", error);
+					console.log('Error:', error);
 				});
 			},
 			save: function (type, id, newObj, oldObj) {
@@ -187,7 +187,7 @@ angular.module('numetal')
 							data.$save().then(function(ref) {
 								return data[id];
 							}, function(error) {
-								console.log("Error:", error);
+								console.log('Error:', error);
 							});
 
 					});
