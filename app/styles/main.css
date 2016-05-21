@@ -1,0 +1,188 @@
+/*
+IMPORTANT NOTE:
+ This file SHOULD NOT BE EDITED MANUALLY, as its purpose
+ is to be the point where all your stylesheet-files will
+ be imported
+*/
+input[type=text], input[type=tel], input[type=password], input[type=email] {
+  width: 100%;
+  padding: 10px;
+  font-size: 18px;
+  min-width: 160px; }
+
+input[type=file] {
+  width: 100%;
+  padding: 10px;
+  font-size: 18px;
+  max-height: 40px; }
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  max-width: 320px; }
+
+select {
+  padding: 10px;
+  font-size: 18px; }
+
+button {
+  text-align: center; }
+
+[class^="icon-"], [class*=" icon-"] {
+  font-family: 'icon-font';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+*, *:after, *:before {
+  box-sizing: border-box; }
+
+body,
+html {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden; }
+
+:focus {
+  outline: none; }
+
+div {
+  font-size: 18px; }
+
+.button {
+  max-width: 320px;
+  background: #43de9f;
+  padding: 2px 4px;
+  border-radius: 2px;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+          align-items: center; }
+
+.button:hover {
+  box-shadow: 0 0 2px 2px rgba(255, 255, 255, 0.3); }
+
+.button:active {
+  box-shadow: 0 0 4px 4px rgba(255, 255, 255, 0.5); }
+
+.save {
+  max-width: 320px;
+  background: #5294cc;
+  padding: 2px 4px;
+  border-radius: 2px;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+          align-items: center; }
+
+.save:hover {
+  box-shadow: 0 0 2px 2px rgba(255, 255, 255, 0.3); }
+
+.save:active {
+  box-shadow: 0 0 4px 4px rgba(255, 255, 255, 0.5); }
+
+.danger {
+  max-width: 320px;
+  background: #ec2e42;
+  padding: 2px 4px;
+  border-radius: 2px;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+          align-items: center; }
+
+.danger:hover {
+  box-shadow: 0 0 2px 2px rgba(255, 255, 255, 0.3); }
+
+.danger:active {
+  box-shadow: 0 0 4px 4px rgba(255, 255, 255, 0.5); }
+
+.disabled {
+  max-width: 320px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid;
+  padding: 2px 4px;
+  border-radius: 2px;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+          align-items: center; }
+
+.disabled:hover {
+  box-shadow: 0 0 2px 2px rgba(255, 255, 255, 0.3); }
+
+.disableddanger:active {
+  box-shadow: 0 0 4px 4px rgba(255, 255, 255, 0.5); }
+
+i {
+  margin: 0 6px; }
+
+body {
+  margin: 0; }
+
+.dark-bg {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#45484d+0,000000+100&0.62+0,1+100;Black+3D+%231 */
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgba(69, 72, 77, 0.62) 0%, black 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgba(69, 72, 77, 0.62) 0%, black 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9e45484d', endColorstr='#000000',GradientType=0 );
+  /* IE6-9 */ }
+
+.dark-bg-rev {
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.62);
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,45484d+100&0.4+0,0.62+100 */
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.4) 0%, rgba(69, 72, 77, 0.62) 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(69, 72, 77, 0.62) 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#66000000', endColorstr='#9e45484d',GradientType=0 );
+  /* IE6-9 */ }
+
+.red-bg {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ea4152+0,ec2e42+100 */
+  background: #ea4152;
+  /* Old browsers */
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #ea4152 0%, #ec2e42 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #ea4152 0%, #ec2e42 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ea4152', endColorstr='#ec2e42',GradientType=0 );
+  /* IE6-9 */ }
+
+.white-text {
+  color: white; }
+
+a {
+  text-decoration: none;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px #000;
+  color: white;
+  border-bottom: 1px solid #ec2e42; }
+
+a:hover {
+  text-decoration: none;
+  font-weight: bold;
+  text-shadow: 3px 3px 5px #000;
+  color: #fefefe;
+  border-bottom: 1px solid #43de9f; }
+
+/*# sourceMappingURL=main.css.map */
