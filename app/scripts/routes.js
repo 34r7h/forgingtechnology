@@ -11,8 +11,8 @@ angular.module('numetal')
 	.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 		'use strict';
 
-		$locationProvider.hashPrefix('!');
-		// $locationProvider.html5Mode(true);
+
+		$locationProvider.html5Mode(true);
 
 		$urlRouterProvider.otherwise('/');
 
