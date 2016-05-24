@@ -12,7 +12,7 @@ angular.module('numetal')
 		'use strict';
 
 		$uiViewScrollProvider.useAnchorScroll();
-		$locationProvider.html5Mode(true);
+		// $locationProvider.html5Mode(true);
 		$locationProvider.hashPrefix('!');
 
 
