@@ -1,28 +1,31 @@
-<h2>{{metal.s.type | uppercase}} <b>{{metal.d.object.content[metal.s.params].name}}</b></h2>
+<a ng-href="#!/{{metal.s.type}}" ng-style="{color: 'white'}">
+    <h2><i class="fa fa-{{metal.s.type == 'services' ? 'gavel' : metal.s.type == 'clients' ? 'users' : metal.s.type == 'gallery' ? 'image' : 'info'}}"></i>
+    {{metal.s.type | uppercase}} </h2>
+</a>
 <ui-view></ui-view>
 <div
         ng-show="metal.s.state.current.url.indexOf(':') < 0 && metal.d.object.content[key].publish"
         ng-repeat="(key, val) in metal.d.object.index.sections[metal.s.type]"
-        ng-style="{background:'rgba(0,0,0,.1)', marginBottom:'10px', padding:'10px'}">
-    <h2>
-        <a ng-href="{{'#!/'+metal.s.type+'/'+key}}">{{metal.d.object.content[key].name}}</a>
-    </h2>
+        ng-style="{background:'rgba(255,255,255,1)', opacity:.8, color:'#555', marginBottom:'10px', padding:'0'}">
+    <a ng-href="{{'#!/'+metal.s.type+'/'+key}}" ng-style="{padding:'10px', color:'white', width:'100%'}" class="{{metal.s.type == 'services' ? 'button' : metal.s.type == 'clients' ? 'save' : metal.s.type == 'gallery' ?'warning' : 'danger'}}">
+        <h2>{{metal.d.object.content[key].name | uppercase}}</h2>
+    </a>
 
-        <div ng-style="{display:'flex', flexWrap:'wrap', justifyContent:'space-between'}">
-            <a ng-repeat="(fileKey, file) in metal.d.object.content[key].media" ng-href="{{'#!/'+metal.s.type+'/'+key}}"
-                 ng-init="!contentThumb ? contentThumb = metal.a.get('https://sizzling-fire-2548.firebaseio.com/media/'+ metal.d.object.media[file].name.replace('.','`') + '.json' ) : null"
-                 ng-style="{position:'relative', margin:'6px', width: '160px', height:'160px', flex:'1 1 auto', objectFit:'cover'}">
-                <img
-                        ng-style="{position:'absolute', margin:'6px',objectFit: 'cover', width: '100%', height:'160px'}"
-                        ng-show="contentThumb"
-                        ng-src="{{contentThumb.data.data}}" alt="">
-                <img
-                        ng-style="{position:'absolute', zIndex:10, margin:'6px',objectFit: 'cover', width: '100%', height:'160px'}"
-                        ng-show="contentThumb"
-                        ng-src="{{metal.d.object.media[file].src}}" alt="">
-            </a>
-        </div>
-    <p>{{metal.d.object.content[key].text}}</p>
+    <div ng-style="{display:'flex', flexWrap:'wrap', justifyContent:'space-between'}">
+        <a ng-repeat="(fileKey, file) in metal.d.object.content[key].media" ng-href="{{'#!/'+metal.s.type+'/'+key}}"
+           ng-init="!contentThumb ? contentThumb = metal.a.get('https://sizzling-fire-2548.firebaseio.com/media/'+ metal.d.object.media[file].name.replace('.','`') + '.json' ) : null"
+           ng-style="{position:'relative', margin:'6px', width: '160px', height:'160px', flex:'1 1 auto', objectFit:'cover'}">
+            <img
+                    ng-style="{position:'absolute', margin:'6px',objectFit: 'cover', width: '100%', height:'160px'}"
+                    ng-show="contentThumb"
+                    ng-src="{{contentThumb.data.data}}" alt="">
+            <img
+                    ng-style="{position:'absolute', zIndex:10, margin:'6px',objectFit: 'cover', width: '100%', height:'160px'}"
+                    ng-show="contentThumb"
+                    ng-src="{{metal.d.object.media[file].src}}" alt="">
+        </a>
+    </div>
+    <p ng-style="{padding:'10px'}">{{metal.d.object.content[key].text}}</p>
 
     <div>
         <div ng-style="{display:'flex', flexWrap:'wrap', justifyContent:'flex-start'}">

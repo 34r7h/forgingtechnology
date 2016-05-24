@@ -22,7 +22,8 @@
         <label for="edit-text" ng-style="{padding:'10px'}">
             <textarea id="edit-text" ng-model="admin.d.object[val.$value][val.$id].text"></textarea>
         </label>
-        <h4 class="save" ng-click="admin.a.save(val.$value, val.$id)"><i class="fa fa-floppy-o"> </i>  Save</h4>
+        <h4 class="save" ng-click="admin.a.save(val.$value, val.$id)"><i class="fa fa-floppy-o"> </i>  SAVE</h4>
+        <h4 class="danger" ng-click="admin.a.rm(val.$value, val.$id)"><i class="fa fa-close"> </i>  REMOVE</h4>
         <!-- TODO make next and prev feature for image viewing -->
 
 

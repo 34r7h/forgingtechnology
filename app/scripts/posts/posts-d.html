@@ -5,17 +5,23 @@
             class="dark-bg-rev"
             ng-show="metal.d.object[val.$value][val.$id].publish"
             ng-init="params[$index] = {}; params[$index][(metal.d.object[val.$value][val.$id].section || val.$value)] = val.$id"
-            ng-style="{flex:'1 1 auto', display:'flex', flexDirection:'row', justifyContent:'space-between', width:'320px', margin:'6px', alignItems:'center', flexWrap:'wrap'}"
+            ng-style="{flex:'1 1 auto', display:'flex', flexDirection:'row', justifyContent:'space-between', width:'320px', margin:'6px', alignItems:'center', flexWrap:'wrap', background:'rgba(255,255,255,1)', opacity:.8, color:'#555'}"
             ng-repeat="(key, val) in metal.d.array.posts | filter:{$value:'!media'}">
         <div ng-style="{width:'100%', padding:'10px', display:'flex', justifyContent:'space-between'}">
-            <i>{{metal.d.object[val.$value][val.$id].section | uppercase}}</i>
-            <a ng-style="{textAlign:'right'}"
-               ng-href="{{'#!/'+metal.d.object[val.$value][val.$id].section+'/'+val.$id}}">{{metal.d.object[val.$value][val.$id].name}}</a>
+            <span  ng-style="{color:metal.d.object[val.$value][val.$id].section == 'services' ? '#43de9f' : metal.d.object[val.$value][val.$id].section == 'clients' ? '#5294cc' : metal.d.object[val.$value][val.$id].section == 'gallery' ? '#ffc27e' : '#ec2e42'}">
+                <i
+                   class="fa fa-{{metal.d.object[val.$value][val.$id].section == 'services' ? 'gavel' : metal.d.object[val.$value][val.$id].section == 'clients' ? 'users' : metal.d.object[val.$value][val.$id].section == 'gallery' ? 'image' : 'info'}}"></i>
+                <b> {{metal.d.object[val.$value][val.$id].section | uppercase}}</b>
+            </span>
+            <a class="bling"
+               ng-style="{textAlign:'right', color:'black'}"
+               ng-href="{{'#!/'+metal.d.object[val.$value][val.$id].section+'/'+val.$id}}">{{metal.d.object[val.$value][val.$id].name
+                | uppercase}}</a>
         </div>
         <div ng-init="postThumb = metal.d.object[val.$value][val.$id].media[0] ? metal.a.get('https://sizzling-fire-2548.firebaseio.com/media/'+ metal.d.object.media[metal.d.object[val.$value][val.$id].media[0]].name.replace('.','`')+ '.json'): metal.a.get('https://sizzling-fire-2548.firebaseio.com/media/'+ metal.d.object.media[val.$id].name.replace('.','`')+ '.json')"
              ng-style="{width:'100%', position:'relative'}">
-            <div ng-style="{height:'320px'}">
-                <a ng-href="{{'#!/'+metal.d.object[val.$value][val.$id].section+'/'+val.$id}}">
+            <div  ng-if="metal.d.object[val.$value][val.$id].media[0]" ng-style="{height:'320px', borderTop: '6px solid', borderTopColor: metal.d.object[val.$value][val.$id].section == 'services' ? '#43de9f' : metal.d.object[val.$value][val.$id].section == 'clients' ? '#5294cc' : metal.d.object[val.$value][val.$id].section == 'gallery' ? '#ffc27e' : '#ec2e42'}">
+                <a ng-if="metal.d.object[val.$value][val.$id].section !== 'gallery'" ng-href="{{'#!/'+metal.d.object[val.$value][val.$id].section+'/'+val.$id}}">
                     <img ng-if="metal.d.object[val.$value][val.$id].media[0]" alt=""
                          ng-src="{{postThumb ? postThumb.data.data: 'no image'}}"
                          ng-style="{position:'absolute', height:'160px', width:'100%', objectFit:'cover'}">
@@ -23,9 +29,32 @@
                          ng-src="{{metal.d.object.media[metal.d.object[val.$value][val.$id].media[0]].src}}"
                          ng-style="{position:'absolute', height:'320px', width:'100%', objectFit:'cover', zIndex:10}">
                 </a>
+                <a ng-if="metal.d.object[val.$value][val.$id].section === 'gallery'" ng-href="{{'#!/'+metal.d.object[val.$value][val.$id].section+'/'+val.$id}}" ng-style="{display:'flex', flexWrap:'wrap', justifyContent:'stretch'}">
+                    <div
+                            ng-init="!postThumb ? postThumb = metal.a.get('https://sizzling-fire-2548.firebaseio.com/media/'+ metal.d.object.media[file].name.replace('.','`') + '.json' ) : null"
+                            ng-repeat="(fileKey, file) in metal.d.object[val.$value][val.$id].media"
+                            ng-style="{position:'relative', margin: '2px', objectFit: 'cover', flex:'1 0 auto', width:'160px', height: '160px'}"
+                            ng-click="metal.s.full = false; metal.s.full[val.$value].src = metal.d.object.media[file].src; metal.s.full[val.$value].thumb = postThumb.data.data">
+
+                        <img
+                                ng-style="{position:'absolute', objectFit: 'cover', width:'100%', height: '160px'}"
+                                ng-show="postThumb"
+                                ng-src="{{postThumb.data.data}}" alt="">
+                        <img
+                                ng-style="{position:'absolute', objectFit: 'cover', width:'100%', height: '160px', zIndex:10}"
+                                ng-show="postThumb"
+                                ng-src="{{metal.d.object.media[file].src}}" alt="">
+
+                    </div>
+                </a>
             </div>
-            <div ng-style="{padding:'10px'}"><p ng-style="{maxHeight:'160px', overflow:'hidden'}">{{metal.d.object[val.$value][val.$id].text}}</p>
-            <a ng-href="{{'#!/'+metal.d.object[val.$value][val.$id].section+'/'+val.$id}}">Read More..</a></div>
+            <div ng-style="{padding:'10px'}">
+                <p ng-style="{maxHeight:metal.d.object[val.$value][val.$id].media[0] ? '160px' : '480px', overflow:'hidden', fontSize: metal.d.object[val.$value][val.$id].media[0] ? '24px' : '36px'}">
+                    {{metal.d.object[val.$value][val.$id].text}}
+                </p>
+                <a class="{{metal.d.object[val.$value][val.$id].section == 'services' ? 'button' : metal.d.object[val.$value][val.$id].section == 'clients' ? 'save' : metal.d.object[val.$value][val.$id].section == 'gallery' ?'warning' : 'danger'}} sheen"
+                   ng-href="{{'#!/'+metal.d.object[val.$value][val.$id].section+'/'+val.$id}}">Read More..</a>
+            </div>
         </div>
     </div>
 </div>
