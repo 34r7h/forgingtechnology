@@ -19,8 +19,7 @@ input[type=file] {
 textarea {
   width: 100%;
   padding: 10px;
-  font-size: 16px;
-  max-width: 320px; }
+  font-size: 16px; }
 
 select {
   padding: 10px;
@@ -51,7 +50,10 @@ html {
   overflow-x: hidden; }
 
 h1, h2, h3, h4, h5, a {
-  font-family: 'raleway', Helvetica; }
+  font-family: 'raleway', Helvetica, sans-serif; }
+
+body {
+  font-family: Lato,"Helvetica Neue",Arial,sans-serif; }
 
 :focus {
   outline: none; }

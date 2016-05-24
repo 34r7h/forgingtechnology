@@ -33,9 +33,9 @@
     <p ng-style="{padding:'10px'}" ng-show="!metal.s.full[metal.s.params].src">{{metal.d.object.content[metal.s.params].text}}</p>
 
     <div ng-show="!metal.s.full[metal.s.params].src"
-         ng-style="{display:'flex', justifyContent:'space-between', position:'relative'}">
+         ng-style="{display:'flex', justifyContent:'space-between', position:'relative', flexWrap:'wrap'}">
         <div ng-repeat="(contentKey, content) in metal.d.object.content[metal.s.params].content"
-             ng-style="{flex:'1 1 50%', margin:'6px', display:'flex', flexDirection:'column', justifyContent:'space-between', alignItems:'center'}">
+             ng-style="{flex:'1 1 320px', margin:'6px', display:'flex', flexDirection:'column', justifyContent:'space-between', alignItems:'center'}">
             <h4>{{metal.d.object.content[content].name}}</h4>
             <a ng-href="#!/{{metal.d.object.content[content].section}}/{{content}}" ng-style="{height:'160px'}">
                 <img ng-src="{{metal.d.object.media[metal.d.object.content[content].media[0]].src}}"
