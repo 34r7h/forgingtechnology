@@ -18,9 +18,9 @@ angular.module('numetal')
                 function getPageTags(){
                     $timeout(function () {
                         var pageTags = 'metal work';
-                        Data.object.content ? angular.forEach(Data.object.content[State.params].tags,function (tag) {
+                        (State.params && Data.object.content) ?  Data.object.content[State.params].tags ? angular.forEach(Data.object.content[State.params].tags,function (tag) {
                             pageTags = pageTags + ', ' + tag;
-                        }) : getPageTags();
+                        }) : getPageTags(): null;
                         $rootScope.tags = pageTags;
                     },1000);
                 }

@@ -7,10 +7,14 @@
  */
 
 angular.module('numetal')
-	.factory('Api', function ($http, $state, Data, $firebaseObject, $firebaseAuth, $firebaseArray, $timeout, State, $rootScope) {
+	.factory('Api', function ($http, $state, Data, $firebaseObject, $firebaseAuth, $firebaseArray, $timeout, State, $rootScope, $anchorScroll, $location) {
 		'use strict';
 		$rootScope.debug = true;
 		var api = {
+			anchor: function (id) {
+				$location.hash(id);
+				$anchorScroll();
+			},
 			email: function(subject, text, from) {
 				var msgRef = new Firebase('https://sizzling-fire-2548.firebaseio.com/messages');
 				var msg = $firebaseArray(msgRef).$loaded().then(function (data) {

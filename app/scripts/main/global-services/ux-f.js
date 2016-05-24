@@ -15,7 +15,7 @@ angular.module('numetal')
         // ACTUAL DEFINITION
         var service = {
             xy: [$window.innerWidth,$window.innerHeight],
-            share: [{name:'facebook', color:'#3b5998'}, {name:'google', color:'#f15b44'}, {name: 'twitter', color:'#00aced'}, {name: 'pinterest', color:'#c92228'}]
+            share: [{name:'facebook', color:'#3b5998'}, {name:'google', color:'#f15b44'}, {name: 'twitter', color:'#00aced'}, {name: 'pinterest', color:'#c92228'}, {name:'instagram', color:'#833ab4'}]
         };
 
         function adminUI(){

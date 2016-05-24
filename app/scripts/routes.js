@@ -28,51 +28,87 @@ angular.module('numetal')
 					vm.s = Facts.state;
 					vm.u = Facts.ux;
 				},
-				controllerAs: 'metal'
+				controllerAs: 'metal',
+				onEnter: function (Api) {
+					Api.anchor('top');
+				}
 			})
 			.state('metal.home', {
 				url: '/',
-				template: '<posts></posts>'
+				template: '<posts></posts>',
+				onEnter: function (Api) {
+					Api.anchor('top');
+				}
 			})
 			.state('metal.about', {
 				url: '/about',
-				template: '<content section="about" type="about"></content>'
+				template: '<content section="about" type="about"></content>',
+				onEnter: function (Api) {
+					Api.anchor('top');
+				}
 			})
 			.state('metal.about.about', {
 				url: '/:about',
-				template: '<content-single type="about" section="about"></content-single>'
+				template: '<content-single type="about" section="about"></content-single>',
+				onEnter: function (Api) {
+					Api.anchor('top');
+				}
 			})
 			.state('metal.services', {
 				url: '/services',
-				template: '<content type="services" section="services"></content>'
+				template: '<content type="services" section="services"></content>',
+				onEnter: function (Api) {
+					Api.anchor('top');
+				}
 			})
 			.state('metal.services.services', {
 				url: '/:services',
-				template: '<content-single type="services" section="services"></content-single>'
+				template: '<content-single type="services" section="services"></content-single>',
+				onEnter: function (Api) {
+					Api.anchor('top');
+				}
 			})
 			.state('metal.clients', {
 				url: '/clients',
-				template: '<content type="clients" section="clients"></content>'
+				template: '<content type="clients" section="clients"></content>',
+				onEnter: function (Api) {
+					Api.anchor('top');
+				}
 			})
 			.state('metal.clients.clients', {
 				url: '/:clients',
-				template: '<content-single type="clients" section="clients"></content-single>'
+				template: '<content-single type="clients" section="clients"></content-single>',
+				onEnter: function (Api) {
+					Api.anchor('top');
+				}
 			})
 			.state('metal.posts', {
 				url: '/posts',
-				template: '<content section="posts" type="posts"></content>'
+				template: '<content section="posts" type="posts"></content>',
+				onEnter: function (Api) {
+					Api.anchor('top');
+				}
 			})
 			.state('metal.posts.posts', {
 				url: '/:posts',
-				template: '<content-single section="posts" type="posts"></content-single>'
+				template: '<content-single section="posts" type="posts"></content-single>',
+				onEnter: function (Api) {
+					Api.anchor('top');
+				}
 			})
 			.state('metal.gallery', {
 				url: '/gallery',
-				template: '<content section="gallery" type="gallery"></content>'
+				template: '<content section="gallery" type="gallery"></content>',
+				onEnter: function (Api) {
+					Api.anchor('top');
+				}
 			})
 			.state('metal.gallery.gallery', {
 				url: '/:gallery',
-				template: '<content-single section="gallery" type="gallery"></content-single>'
+				template: '<content-single section="gallery" type="gallery"></content-single>',
+				onEnter: function (Api) {
+					Api.anchor('top');
+				}
 			})
 			.state('admin', {
 				url: '/admin',

@@ -19,7 +19,7 @@
 
 
     <a class="button" ng-style="{margin: '0 6px',flex:'1 1 25%', fontSize:metal.u.xy[0]>=817 ? '22px' : '18px'}"
-        ng-click="metal.s.connect = !metal.s.connect"><b ng-style="{margin:'0'}">
+        ng-click="metal.s.connect = !metal.s.connect; metal.a.anchor('share');"><b ng-style="{margin:'0'}">
         <i class=" fa fa-share"></i></b>
     </a>
 
@@ -40,11 +40,12 @@
                       ng-show="metal.u.xy[0]>=817 || showLink">{{link.name | uppercase}}</span>
             </p>
         </a>
-        <div class="dark-bg"
+        <div
+             class="dark-bg"
              ng-style="{position:'fixed', left: metal.u.xy[0] <817 ? '80px': '160px', top:'60px', bottom: (metal.u.xy[0] < 817 ? 40 : 0)+'px', overflowY:'scroll', overflowX:'hidden', width:(metal.u.xy[0]-(metal.u.xy[0] < 817 ? 80 : 160))+'px', padding:'4px'}">
             <connect ng-show="metal.s.connect"></connect>
-            <ui-view></ui-view>
-            <div ng-style="{width:'100%'}">
+            <ui-view  id="top"></ui-view>
+            <div ng-style="{width:'100%'}" ng-hide="metal.s.full[metal.s.params].src || !metal.d.object.media[metal.d.object.site.footerImg].src">
                 <b ng-style="{display:'flex', height:'160px', width:'100%', position:'absolute', padding:'0 25%', alignItems:'center', justifyContent:'center', textShadow:'3px 3px 2px rgba(0,0,0,.6)', textAlign:'center'}">
                     {{metal.d.object.site.footerText}}
                 </b>

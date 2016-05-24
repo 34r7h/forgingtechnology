@@ -1,6 +1,6 @@
 {
   "name": "numetal",
-  "version": "0.0.0",
+  "version": "0.2.2",
   "description": "",
   "main": "gulpfile.js",
   "repository": {},
@@ -52,6 +52,12 @@
     "yargs": "^3.18.0"
   },
   "dependencies": {
-    "cordova-android": "^3.7.1"
+    "cordova-android": "^3.7.1",
+    "express": "^3.4.8",
+    "gzippo": "^0.2.0",
+    "prerender-node": "^1.1.1"
+  },
+  "engines": {
+    "node": ">=0.10.0"
   }
 }
