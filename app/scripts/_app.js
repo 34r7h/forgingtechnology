@@ -16,5 +16,6 @@ angular.module('numetal', [
 	'ngTouch',
 	'ui.router',
 	'ngFabForm',
-	'firebase'
+	'firebase',
+	'w11k.angular-seo-header'
 ]);

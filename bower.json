@@ -25,7 +25,8 @@
     "ng-fab-form": "latest",
     "angularfire": "^1.2.0",
     "aws-sdk": "^2.3.10",
-    "font-awesome": "^4.6.3"
+    "font-awesome": "^4.6.3",
+    "w11k.angular-seo-header": "*"
   },
   "devDependencies": {
     "angular-mocks": "^1.5"

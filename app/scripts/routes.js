@@ -11,7 +11,7 @@ angular.module('numetal')
 	.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 		'use strict';
 
-		// $locationProvider.html5Mode(true);
+		$locationProvider.html5Mode(true);
 		$locationProvider.hashPrefix('!');
 
 
@@ -29,22 +29,19 @@ angular.module('numetal')
 					vm.s = Facts.state;
 					vm.u = Facts.ux;
 				},
-				controllerAs: 'metal',
-				animation: {
-					enter: 'slide-in-right-fade',
-					leave: 'slide-out-left-fade',
-					ease: 'sine',
-					speed: 600
-				}
+				controllerAs: 'metal'
 			})
 			.state('metal.home', {
 				url: '/',
 				template: '<posts></posts>',
-				animation: {
-					enter: 'slide-in-right-fade',
-					leave: 'slide-out-left-fade',
-					ease: 'sine',
-					speed: 600
+				data: {
+					head: {
+						title: 'Page title for this View',
+						keywords: ["Array", "of", 'Keywords'],
+						description: "your meta description",
+						robots: "index,follow",
+						canonical: 'http://www.mySite.tld/home'
+					}
 				}
 			})
 			.state('metal.about', {

@@ -29,7 +29,7 @@
             </span>
             <a class="bling"
                ng-style="{textAlign:'right', color:'black'}"
-               ng-href="{{'#!/'+metal.d.object[val.$value][val.$id].section+'/'+val.$id}}">{{metal.d.object[val.$value][val.$id].name
+               ng-href="{{'/'+metal.d.object[val.$value][val.$id].section+'/'+val.$id}}">{{metal.d.object[val.$value][val.$id].name
                 | uppercase}}</a>
         </div>
         <div
@@ -38,7 +38,7 @@
             <div ng-if="metal.d.object[val.$value][val.$id].media[0]"
                  ng-style="{borderTop: '6px solid', borderTopColor: metal.d.object[val.$value][val.$id].section == 'services' ? '#43de9f' : metal.d.object[val.$value][val.$id].section == 'clients' ? '#5294cc' : metal.d.object[val.$value][val.$id].section == 'gallery' ? '#ffc27e' : '#ec2e42', maxHeight:'480px', minHeight:'320px', overflow:'hidden'}">
                 <a ng-if="metal.d.object[val.$value][val.$id].section !== 'gallery'"
-                   ng-href="{{'#!/'+metal.d.object[val.$value][val.$id].section+'/'+val.$id}}">
+                   ng-href="{{'/'+metal.d.object[val.$value][val.$id].section+'/'+val.$id}}">
                     <img ng-if="metal.d.object[val.$value][val.$id].media[0]" alt=""
                          ng-src="{{postThumb ? postThumb.data.data: 'no image'}}"
                          ng-style="{position:'absolute', height:'320px', width:'100%', objectFit:'cover'}">
@@ -47,7 +47,7 @@
                          ng-style="{position:'absolute', height:'320px', width:'100%', objectFit:'cover', zIndex:10}">
                 </a>
                 <a ng-if="metal.d.object[val.$value][val.$id].section === 'gallery'"
-                   ng-href="{{'#!/'+metal.d.object[val.$value][val.$id].section+'/'+val.$id}}"
+                   ng-href="{{'/'+metal.d.object[val.$value][val.$id].section+'/'+val.$id}}"
                    ng-style="{display:'flex', flexWrap:'wrap', position:'relative', justifyContent:'flex-start'}">
                     <div
                             ng-init="!postThumb[$index] ? postThumb[$index] = metal.a.get('https://sizzling-fire-2548.firebaseio.com/media/'+ metal.d.object.media[file].name.replace('.','`') + '.json' ) : null"
@@ -72,7 +72,7 @@
                     {{metal.d.object[val.$value][val.$id].text}}
                 </p>
                 <a class="{{metal.d.object[val.$value][val.$id].section == 'services' ? 'button' : metal.d.object[val.$value][val.$id].section == 'clients' ? 'save' : metal.d.object[val.$value][val.$id].section == 'gallery' ?'warning' : 'danger'}} sheen"
-                   ng-href="{{'#!/'+metal.d.object[val.$value][val.$id].section+'/'+val.$id}}">Read More..</a>
+                   ng-href="{{'/'+metal.d.object[val.$value][val.$id].section+'/'+val.$id}}">Read More..</a>
             </div>
         </div>
     </div>

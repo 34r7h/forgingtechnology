@@ -4,12 +4,12 @@
         ng-show="metal.s.state.current.url.indexOf(':') < 0 && metal.d.object.content[key].publish"
         ng-repeat="(key, val) in metal.d.object.index.sections[metal.s.type]"
         ng-style="{background:'rgba(255,255,255,1)', opacity:.8, color:'#555', marginBottom:'10px', padding:'0'}">
-    <a ng-href="{{'#!/'+metal.s.type+'/'+key}}" ng-style="{padding:'10px', color:'white', width:'100%'}" class="{{metal.s.type == 'services' ? 'button' : metal.s.type == 'clients' ? 'save' : metal.s.type == 'gallery' ?'warning' : 'danger'}}">
+    <a ng-href="{{'/'+metal.s.type+'/'+key}}" ng-style="{padding:'10px', color:'white', width:'100%'}" class="{{metal.s.type == 'services' ? 'button' : metal.s.type == 'clients' ? 'save' : metal.s.type == 'gallery' ?'warning' : 'danger'}}">
         <h2>{{metal.d.object.content[key].name | uppercase}}</h2>
     </a>
 
     <div ng-style="{display:'flex', flexWrap:'wrap', justifyContent:'space-between'}">
-        <a ng-repeat="(fileKey, file) in metal.d.object.content[key].media" ng-href="{{'#!/'+metal.s.type+'/'+key}}"
+        <a ng-repeat="(fileKey, file) in metal.d.object.content[key].media" ng-href="{{'/'+metal.s.type+'/'+key}}"
            ng-init="!contentThumb ? contentThumb = metal.a.get('https://sizzling-fire-2548.firebaseio.com/media/'+ metal.d.object.media[file].name.replace('.','`') + '.json' ) : null"
            ng-style="{position:'relative', margin:'6px', width: '160px', height:'160px', flex:'1 1 auto', objectFit:'cover'}">
             <img
