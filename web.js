@@ -7,7 +7,7 @@ var app = express();
 
 app.all('/*', function(req, res, next) {
 	// Just send the index.html for other files to support HTML5Mode
-	res.sendFile('index.html', { root: __dirname });
+	res.sendFile('index.html', { root: __dirname+ "/www" });
 });
 
 app.use(require('prerender-node').set('prerenderToken', 'ipMxPbev4DV5j1W9P7Mq'));
