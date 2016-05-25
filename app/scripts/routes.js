@@ -8,10 +8,9 @@
  */
 
 angular.module('numetal')
-	.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $uiViewScrollProvider) {
+	.config(function ($stateProvider, $urlRouterProvider, $locationProvider /*, $uiViewScrollProvider, $provide*/) {
 		'use strict';
-
-		$uiViewScrollProvider.useAnchorScroll();
+		
 		// $locationProvider.html5Mode(true);
 		$locationProvider.hashPrefix('!');
 
@@ -30,15 +29,33 @@ angular.module('numetal')
 					vm.s = Facts.state;
 					vm.u = Facts.ux;
 				},
-				controllerAs: 'metal'
+				controllerAs: 'metal',
+				animation: {
+					enter: 'slide-in-right-fade',
+					leave: 'slide-out-left-fade',
+					ease: 'sine',
+					speed: 600
+				}
 			})
 			.state('metal.home', {
 				url: '/',
-				template: '<posts></posts>'
+				template: '<posts></posts>',
+				animation: {
+					enter: 'slide-in-right-fade',
+					leave: 'slide-out-left-fade',
+					ease: 'sine',
+					speed: 600
+				}
 			})
 			.state('metal.about', {
 				url: '/about',
-				template: '<content section="about" type="about"></content>'
+				template: '<content section="about" type="about"></content>',
+				animation: {
+					enter: 'slide-in-right-fade',
+					leave: 'slide-out-left-fade',
+					ease: 'sine',
+					speed: 600
+				}
 			})
 			.state('metal.about.about', {
 				url: '/:about',

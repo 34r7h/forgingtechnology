@@ -8,7 +8,7 @@
  */
 'use strict';
 
-var app = angular.module('numetal', [
+angular.module('numetal', [
 	'ngAnimate',
 	'ngAria',
 	'ngResource',
@@ -19,11 +19,12 @@ var app = angular.module('numetal', [
 	'firebase'
 ]);
 
-app.run(function ($stateParams, $anchorScroll, $rootScope, $location) {
+/*
+angular.module('numetal').run(function ($stateParams, $anchorScroll, $rootScope, $location) {
 	$rootScope.$on('$stateChangeSuccess', function(event, toState){
 		if($stateParams.scrollTo){
-			$location.hash($stateParams.scrollTo);
-			$anchorScroll();
+			// $location.hash($stateParams.scrollTo);
+			// $anchorScroll();
 		}
 	});
-});
+});*/

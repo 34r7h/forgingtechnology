@@ -1,8 +1,9 @@
-<h1 ng-style="{display:'flex', height:'240px', width:'100%', position:'absolute', fontSize:'40px', alignItems:'center', justifyContent:'center', textShadow:'3px 3px 2px rgba(0,0,0,.6)', margin:0, zIndex:1000}">
+<h1 ng-show="metal.d.object.site.headerImg" class="header-show-hide" ng-style="{display:'flex', height:'240px', width:'100%', position:'absolute', fontSize:'40px', alignItems:'center', justifyContent:'center', textShadow:'3px 3px 2px rgba(0,0,0,.6)', margin:0, zIndex:1000}">
     {{metal.d.object.site.headerText}}
 </h1>
-<div ng-style="{position:'relative', margin: '6px 0', height:'240px' }"
-     ng-init="headerThumb = metal.d.object.site.headerImg ? metal.a.get('https://sizzling-fire-2548.firebaseio.com/media/'+ metal.d.object.media[metal.d.object.site.headerImg].name.replace('.','`')+ '.json') : null">
+<div ng-show="metal.d.object.site.headerImg"
+     class="header-show-hide" ng-style="{position:'relative', height:'240px' }"
+     ng-init="headerThumb ? headerThumb = metal.a.get('https://sizzling-fire-2548.firebaseio.com/media/'+ metal.d.object.media[metal.d.object.site.headerImg].name.replace('.','`') + '.json' ) : null">
     <img ng-if="metal.d.object.site.headerImg" alt=""
          ng-src="{{headerThumb ? headerThumb.data.data: 'no image'}}"
          ng-style="{position:'absolute', height:'240px', width:'100%', objectFit:'cover'}">
@@ -75,4 +76,10 @@
             </div>
         </div>
     </div>
+</div>
+<div ng-style="{width:'100%', position:'relative', marginBottom:'40px'}" ng-hide="metal.s.full[metal.s.params].src || !metal.d.object.media[metal.d.object.site.footerImg].src">
+    <b ng-style="{display:'flex', height:'160px', width:'100%', position:'absolute', padding:'0 25%', alignItems:'center', justifyContent:'center', textShadow:'3px 3px 2px rgba(0,0,0,.6)', textAlign:'center'}">
+        {{metal.d.object.site.footerText}}
+    </b>
+    <img ng-style="{width:'100%', height:'160px', objectFit:'cover'}" ng-src="{{metal.d.object.media[metal.d.object.site.footerImg].src}}" alt="metal.d.object.media[metal.d.object.site.footerImg].text">
 </div>

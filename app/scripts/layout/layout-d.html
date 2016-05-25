@@ -1,7 +1,7 @@
 <div class="dark-bg-rev"
      ng-style="{background:'#555', width:'100vw', height:'60px', display:'flex', justifyContent:'space-between', alignItems:'center', position:'fixed', zIndex:10}">
     <a class="danger" ui-sref=".home"
-         ng-style="{display:'flex', flex:'1 0 33%',flexDirection:'row', alignItems:'center', justifyContent:'center', padding:'10px' }">
+       ng-style="{display:'flex', flex:'1 0 33%',flexDirection:'row', alignItems:'center', justifyContent:'center', padding:'10px' }">
         <img ng-style="{height:'40px', width:'40px', margin:'0 10px 0 0'}" src="images/forgingtechnology-logo.png"
              alt="Forging Technology - Vancouver Metal Work">
         <span ng-style="{display:'flex', justifyContent:'flex-start', alignItems:'flex-start', flexDirection:'column'}">
@@ -12,44 +12,44 @@
         </span>
     </a>
 
-    <a ng-style="{flex: '1 1 25%', textAlign:'center', margin:'0 2px'}" target="_blank" ng-href="{{'mailto:'+metal.d.object.site.email}}" class="bling"><i
+    <a ng-style="{flex: '1 1 25%', textAlign:'center', margin:'0 2px'}" target="_blank"
+       ng-href="{{'mailto:'+metal.d.object.site.email}}" class="bling"><i
             class="fa fa-envelope"></i></a>
-    <a ng-style="{flex: '1 1 50%', textAlign:'center',margin:'0 4px'}" ng-href="tel:{{metal.d.object.site.phone}}" class="bling"><b><i class="fa fa-phone"></i>
+    <a ng-style="{flex: '1 1 50%', textAlign:'center',margin:'0 4px'}" ng-href="tel:{{metal.d.object.site.phone}}"
+       class="bling"><b><i class="fa fa-phone"></i>
         <span ng-show="metal.u.xy[0] < 817 ? false: true">{{metal.d.object.site.phone}}</span></b></a>
 
 
     <a class="button" ng-style="{margin: '0 6px',flex:'1 1 25%', fontSize:metal.u.xy[0]>=817 ? '22px' : '18px'}"
-        ng-click="metal.s.connect = !metal.s.connect; metal.a.anchor('share');"><b ng-style="{margin:'0'}">
+       ng-click="metal.s.show.connect = !metal.s.show.connect;"><b ng-style="{margin:'0'}">
         <i class=" fa fa-share"></i></b>
     </a>
 
 
-
 </div>
-<div ng-style="{display:'flex'}">
+
+<div ng-style="{display:'flex'}" ng-cloak>
     <div ng-style="{width:metal.u.xy[0]<817?'80px':'160px', height:(metal.u.xy[1] - 60) +'px', padding:'2px', display:'flex', justifyContent:'space-between', alignItems:'center', alignContent:'center', flexDirection:'column', position:'fixed', top:'60px', background:'#555'}"
          ng-init="nav = [{name:'services', icon:'star', style:'button'},{name:'clients', icon:'users', style:'save'},{name:'gallery', icon:'image', style:'warning'},{name:'about', icon:'info', style:'danger'},{name:'admin/posts', icon:'gears', style:'save'},]">
 
         <a ng-href="#!{{link.name == 'home' ? '/' : '/'+ link.name}}" ng-repeat="link in nav"
            ng-style="{margin:0, flex: '1 1 auto', display:'flex', justifyContent:'center', alignItems:'center', width: '100%'}"
-           class="dark-bg-rev {{style}}" ng-mouseover="showLink = true; style=link.style" ng-mouseleave="showLink = false; style=false">
+           class="dark-bg-rev {{style}}" ng-mouseover="showLink = true; style=link.style"
+           ng-mouseleave="showLink = false; style=false">
             <p ng-style="{display:'flex', justifyContent:'space-around', flexDirection:'column', textAlign:'center'}">
-                <i ng-hide="metal.u.xy[0]<817 && showLink"
+                <i ng-hide=""
                    class="fa {{metal.u.xy[0]>=817 ? 'fa-2x': null}} fa-{{link.icon}}"></i>
-                <span ng-style="{fontSize: metal.u.xy[0]>=817 ? '20px' : '14px'}"
+                <span class="sample-show-hide"  ng-style="{fontSize: metal.u.xy[0]>=817 ? '20px' : '14px'}"
                       ng-show="metal.u.xy[0]>=817 || showLink">{{link.name | uppercase}}</span>
             </p>
         </a>
         <div
-             class="dark-bg"
-             ng-style="{position:'fixed', left: metal.u.xy[0] <817 ? '80px': '160px', top:'60px', bottom: (metal.u.xy[0] < 817 ? 40 : 0)+'px', overflowY:'scroll', overflowX:'hidden', width:(metal.u.xy[0]-(metal.u.xy[0] < 817 ? 80 : 160))+'px', padding:'4px'}">
-            <connect ng-show="metal.s.connect"></connect>
-            <ui-view  id="top"></ui-view>
-            <div ng-style="{width:'100%'}" ng-hide="metal.s.full[metal.s.params].src || !metal.d.object.media[metal.d.object.site.footerImg].src">
-                <b ng-style="{display:'flex', height:'160px', width:'100%', position:'absolute', padding:'0 25%', alignItems:'center', justifyContent:'center', textShadow:'3px 3px 2px rgba(0,0,0,.6)', textAlign:'center'}">
-                    {{metal.d.object.site.footerText}}
-                </b>
-                <img ng-style="{width:'100%', height:'160px', objectFit:'cover'}" ng-src="{{metal.d.object.media[metal.d.object.site.footerImg].src}}" alt="metal.d.object.media[metal.d.object.site.footerImg].text">
+                class="dark-bg"
+                ng-style="{position:'absolute', left: metal.u.xy[0] <817 ? '80px': '160px', top:0, bottom:(metal.u.xy[0] < 817 ? 40 : 0)+'px', height: (metal.u.xy[0] < 817 ? metal.u.xy[1] - 40 : metal.u.xy[1])+'px', overflowY:'scroll', overflowX:'hidden', width:(metal.u.xy[0]-(metal.u.xy[0] < 817 ? 80 : 160))+'px', padding:'4px'}">
+                <div ng-show="metal.s.show.connect" class="sample-show-hide" ng-style="{position:'fixed', right:0, zIndex:10000}">                    <connect></connect>
+                </div>
+            <div class="ui-view-container">
+                <div autoscroll ui-view ng-style="{paddingTop:'10px'}"></div>
             </div>
         </div>
         <div class="dark-bg-rev" ng-if="metal.u.xy[0] < 817"
