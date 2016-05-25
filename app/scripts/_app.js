@@ -18,13 +18,3 @@ angular.module('numetal', [
 	'ngFabForm',
 	'firebase'
 ]);
-
-/*
-angular.module('numetal').run(function ($stateParams, $anchorScroll, $rootScope, $location) {
-	$rootScope.$on('$stateChangeSuccess', function(event, toState){
-		if($stateParams.scrollTo){
-			// $location.hash($stateParams.scrollTo);
-			// $anchorScroll();
-		}
-	});
-});*/

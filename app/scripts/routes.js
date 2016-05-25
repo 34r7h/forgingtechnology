@@ -8,9 +8,9 @@
  */
 
 angular.module('numetal')
-	.config(function ($stateProvider, $urlRouterProvider, $locationProvider /*, $uiViewScrollProvider, $provide*/) {
+	.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 		'use strict';
-		
+
 		// $locationProvider.html5Mode(true);
 		$locationProvider.hashPrefix('!');
 
