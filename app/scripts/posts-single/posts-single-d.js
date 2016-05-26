@@ -11,16 +11,6 @@ angular.module('numetal')
     {
         return {
             templateUrl: 'scripts/posts-single/posts-single-d.html',
-            
-            restrict: 'EA',
-            
-            link: function (scope, el, attrs)
-            {
-
-            },
-            controller: function ($scope)
-            {
-
-            }
+            restrict: 'EA'
         };
     });

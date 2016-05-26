@@ -18,7 +18,7 @@ angular.module('numetal')
 			},
 			email: function(subject, text, from) {
 				var msgRef = new Firebase('https://sizzling-fire-2548.firebaseio.com/messages');
-				var msg = $firebaseArray(msgRef).$loaded().then(function (data) {
+				$firebaseArray(msgRef).$loaded().then(function (data) {
 					data.$add({subject:subject, text:text, from: from}).then(function (ref) {
 						console.log(ref);
 						var getMsg = $firebaseAuth(Data.refs.fb);
@@ -29,9 +29,8 @@ angular.module('numetal')
 						}).catch(function(error) {
 							console.error('Error: ', error);
 						});
-					})
+					});
 				});
-
 		},
 			login: function (email, pass) {
 				var fbAuth = $firebaseAuth(Data.refs.fb);
@@ -50,7 +49,7 @@ angular.module('numetal')
 			},
 			log: function(msg, description){
 					return $rootScope.debug ? typeof msg === 'object' ? angular.forEach(msg, function(ms, msKey){
-						console.log('%c'+msKey+': '+ms, 'background:#aaaaaa; color:#fefefe, padding:10px', description)
+						console.log('%c'+msKey+': '+ms, 'background:#aaaaaa; color:#fefefe, padding:10px', description);
 					}) : console.log('%c'+msg, 'background:#aaaaaa; color:#fefefe, padding:10px', description) : null;
 			},
 			copy: function (obj) {
@@ -68,9 +67,7 @@ angular.module('numetal')
 				$state.reload(state);
 			},
 			add: function (type, obj) {
-				obj.name ? addFn() : addError();
 				function addFn() {
-					var returnData = {};
 					obj.updated = Date.now(); // adds timestamp to each added object.
 					obj.publish = obj.publish ? obj.publish : true;
 					!Data.object[type] ? Data.object[type] = {} : null; // TODO put in data factory. For a fresh app, creates post and index keys.
@@ -106,27 +103,23 @@ angular.module('numetal')
 						Data.object.$save();
 					});
 				}
-
 				function addError() {
 					console.error('New entries must have a name');
 				}
+				obj.name ? addFn() : addError();
+
 			},
 			rm: function (type, id) {
 				/**/
-
-				type === 'media' ? deleteFile() : null;
-
-				type !== 'media' ? removeContent() : null;
-
 				function deleteFile() {
 					var creds = {
 						// TODO: Get process VARS from Heroku
 						bucket: 'forgingtechnologies.com',
-						access_key: 'AKIAIYGVT' + 'JVFY77MNYCQ',
-						secret_key: 'VNNKgEXYvSVS21oj5X' + 'cCem3cBzNkIzXZEW5q1Rwm'
+						accessKey: 'AKIAIYGVT' + 'JVFY77MNYCQ',
+						secretKey: 'VNNKgEXYvSVS21oj5X' + 'cCem3cBzNkIzXZEW5q1Rwm'
 					};
 
-					AWS.config.update({accessKeyId: creds.access_key, secretAccessKey: creds.secret_key});
+					AWS.config.update({accessKeyId: creds.accessKey, secretAccessKey: creds.secretKey});
 					AWS.config.region = 'us-west-2';
 
 					var bucketInstance = new AWS.S3();
@@ -154,7 +147,6 @@ angular.module('numetal')
 						data.$save();
 					});
 				}
-
 				function removeContent(){
 					angular.forEach(Data.object.content[id].tags, function (tag) {
 						Data.object.index.tags[tag][id]=null;
@@ -163,8 +155,14 @@ angular.module('numetal')
 					Data.object[type][id] = null;
 					Data.object.index[type][id] = null;
 					Data.object.posts[id] = null;
-					Data.object.$save()
+					Data.object.$save();
 				}
+
+				type === 'media' ? deleteFile() : null;
+
+				type !== 'media' ? removeContent() : null;
+
+
 			},
 			saveSite: function (siteObj) {
 				var obj = $firebaseObject(Data.refs.fb.child('site'));
@@ -182,31 +180,26 @@ angular.module('numetal')
 				var check = {};
 				!newObj ? newObj = Data.object[type][id] : null;
 				!oldObj ? oldObj = newObj : null;
-
-				JSON.stringify(oldObj.tags) !== JSON.stringify(newObj.tags) ? tagCheck(): check.tags = true;
-				JSON.stringify(oldObj.section) !== JSON.stringify(newObj.section) ? sectionCheck(): check.sections = true;
-
+				
 				function saveAfterChecks(){
-					var saveObj = $firebaseObject(Data.refs.fb.child(type)).$loaded().then(function (data) {
-							data[id] = newObj;
-							data.$save().then(function(ref) {
-								return data[id];
-							}, function(error) {
-								console.log('Error:', error);
-							});
-
+					$firebaseObject(Data.refs.fb.child(type)).$loaded().then(function (data) {
+						data[id] = newObj;
+						data.$save().then(function() {
+							return data[id];
+						}, function(error) {
+							console.log('Error:', error);
+						});
+						
 					});
 				}
 				function checksReady(){
 					check.tags && check.sections ? saveAfterChecks() : $timeout(function () {
-					checksReady();
-				},1000);}
-
+						checksReady();
+					},1000);}
 				function sectionCheck(){
 					newObj.section !== oldObj.section ? (Data.object.index.sections[oldObj.section][id] = null, Data.object.index.sections[newObj.section][id] = true) : null;
 					return check.sections = true;
 				}
-
 				function tagCheck() {
 					console.log('checking tags', oldObj.tags, newObj.tags);
 					var uniqueTags = [];
@@ -226,6 +219,10 @@ angular.module('numetal')
 					Data.object.$save();
 					return check.tags = true;
 				}
+				
+				JSON.stringify(oldObj.tags) !== JSON.stringify(newObj.tags) ? tagCheck(): check.tags = true;
+				JSON.stringify(oldObj.section) !== JSON.stringify(newObj.section) ? sectionCheck(): check.sections = true;
+				
 				checksReady();
 				return newObj;
 

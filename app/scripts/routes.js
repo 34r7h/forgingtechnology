@@ -36,11 +36,11 @@ angular.module('numetal')
 						head: {
 							title: 'Forging Technology - Serving Vancouver with Superior Metalwork',
 								keywords: State.params,
-								description: "your meta description",
-								robots: "index,follow",
-								canonical: 'http://www.mySite.tld/home'
+								description: 'Forging Technology - Serving Vancouver with Superior Metalwork',
+								robots: 'index,follow',
+								canonical: 'http://forgingtechnology.com'
 						}
-					}
+					};
 				}
 			})
 			.state('metal.home', {
@@ -51,11 +51,11 @@ angular.module('numetal')
 						head: {
 							title: 'Forging Technology Proudly Serving Vancouver with Superior Metalwork',
 							keywords: State.params,
-							description: "Posts from Forging Technology, Vancouver Metalwork",
-							robots: "index,follow",
-							canonical: 'http://www.mySite.tld/home'
+							description: 'Posts from Forging Technology, Vancouver Metalwork',
+							robots: 'index,follow',
+							canonical: 'http://forgingtechnology.com/'
 						}
-					}
+					};
 				}
 			})
 			.state('metal.about', {
@@ -66,11 +66,11 @@ angular.module('numetal')
 						head: {
 							title: 'Forging Technology  - About',
 							keywords: State.params,
-							description: "Posts from Forging Technology, Vancouver Metalwork",
-							robots: "index,follow",
-							canonical: 'http://www.mySite.tld/home'
+							description: 'Posts from Forging Technology, Vancouver Metalwork',
+							robots: 'index,follow',
+							canonical: 'http://forgingtechnology.com/about'
 						}
-					}
+					};
 				}
 			})
 			.state('metal.about.about', {

@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * @ngdoc directive
  * @name numetal.directive:uploader
@@ -20,13 +18,11 @@ angular.module('numetal').directive('uploader', function () {
 			$scope.uploadS3 = function () {
 				var startTime;
 				console.info('Begin Uploading to S3', startTime = performance.now());
-				AWS.config.update({accessKeyId: $scope.creds.access_key, secretAccessKey: $scope.creds.secret_key});
+				AWS.config.update({accessKeyId: $scope.creds.accessKey, secretAccessKey: $scope.creds.secretKey});
 				AWS.config.region = 'us-west-2';
 				var bucket = new AWS.S3({params: {Bucket: $scope.creds.bucket}});
 				var time = Date.now();
-				var smallMedia = '';
 				var smallMedias = [];
-				var mediaObj = {};
 				var newMedia = $firebaseObject(Data.refs.media);
 				if ($scope.files.length) {
 					var fileTypes = [], uniqueFileNames = [], readers = [];
@@ -45,11 +41,11 @@ angular.module('numetal').directive('uploader', function () {
 									return false;
 								}
 								else {
-									// console.log('File Uploaded Successfully', 'Done');
 									setTimeout(function () {
 										$scope.uploadProgress = 0;
 										$scope.$digest();
 									}, 4000);
+									return data;
 								}
 							})
 							.on('httpUploadProgress', function (progress) {
@@ -72,14 +68,14 @@ angular.module('numetal').directive('uploader', function () {
 									canvas.width = size;
 									canvas.height = dataImg.height / x;
 									ctx.drawImage(dataImg, 0, 0, canvas.width, canvas.height);
-									smallMedias[int] = canvas.toDataURL('image/jpeg', .75);
+									smallMedias[int] = canvas.toDataURL('image/jpeg', 0.75);
 									newMedia.$loaded().then(function (data) {
 										data[uniqueFileNames[int].replace('.', '`')] = smallMedias[int];
 										$timeout(data.$save(), 5000);
 									});
 									return e.target.result;
 								})(e.target.result);
-							}
+							};
 						})($scope.files[fileNum], fileNum);
 
 						Api.add('media', {
@@ -95,12 +91,12 @@ angular.module('numetal').directive('uploader', function () {
 				console.info('End Upload to S3', performance.now() - startTime);
 			};
 		},
-		link: function (scope, el, attrs) {
+		link: function (scope, el) {
 			scope.creds = {
 				// TODO: Get process VARS from Heroku
 				bucket: 'forgingtechnologies.com',
-				access_key: 'AKIAIYGVT' + 'JVFY77MNYCQ',
-				secret_key: 'VNNKgEXYvSVS21oj5X' + 'cCem3cBzNkIzXZEW5q1Rwm'
+				accessKey: 'AKIAIYGVT' + 'JVFY77MNYCQ',
+				secretKey: 'VNNKgEXYvSVS21oj5X' + 'cCem3cBzNkIzXZEW5q1Rwm'
 			};
 			el.bind('change', function (event) {
 				var files = event.target.files;

@@ -11,15 +11,6 @@ angular.module('numetal')
     {
         return {
             templateUrl: 'scripts/connect/connect-d.html',
-            
-            restrict: 'EA',
-            link: function (scope, el, attrs)
-            {
-
-            },
-            controller: function ($scope)
-            {
-
-            }
+            restrict: 'EA'
         };
     });
