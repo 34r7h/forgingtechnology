@@ -5,7 +5,8 @@
  * # Api
  * Factory in the numetal.
  */
-
+var AWS = AWS;
+var Firebase = Firebase;
 angular.module('numetal')
 	.factory('Api', function ($http, $state, Data, $firebaseObject, $firebaseAuth, $firebaseArray, $timeout, State, $rootScope, $anchorScroll, $location) {
 		'use strict';

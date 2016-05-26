@@ -5,6 +5,7 @@
  * # Data
  * Factory in the numetal.
  */
+var Firebase = Firebase;
 angular.module('numetal')
 	.factory('Data', function ($firebaseObject, $firebaseArray, $firebaseAuth, State) {
 		'use strict';

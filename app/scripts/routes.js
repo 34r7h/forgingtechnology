@@ -20,6 +20,7 @@ angular.module('numetal')
 		$stateProvider
 			.state('metal', {
 				url: '',
+				title:'Super Forge!',
 				template: '<layout></layout>',
 				abstract: true,
 				controller: function (Facts) {

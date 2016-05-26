@@ -19,7 +19,7 @@ angular.module('numetal')
         };
 
         function adminUI(){
-            service.xy = [$window.innerWidth,$window.innerHeight]
+            service.xy = [$window.innerWidth,$window.innerHeight];
         }
         angular.element($window).bind('resize', function () {
             adminUI();
