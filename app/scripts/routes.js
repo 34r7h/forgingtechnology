@@ -29,29 +29,47 @@ angular.module('numetal')
 					vm.s = Facts.state;
 					vm.u = Facts.ux;
 				},
-				controllerAs: 'metal'
+				controllerAs: 'metal',
+				data: function (State) {
+					return {
+						head: {
+							title: 'Forging Technology - Serving Vancouver with Superior Metalwork',
+								keywords: State.params,
+								description: "your meta description",
+								robots: "index,follow",
+								canonical: 'http://www.mySite.tld/home'
+						}
+					}
+				}
 			})
 			.state('metal.home', {
 				url: '/',
 				template: '<posts></posts>',
-				data: {
-					head: {
-						title: 'Page title for this View',
-						keywords: ["Array", "of", 'Keywords'],
-						description: "your meta description",
-						robots: "index,follow",
-						canonical: 'http://www.mySite.tld/home'
+				data: function (State) {
+					return {
+						head: {
+							title: 'Forging Technology Proudly Serving Vancouver with Superior Metalwork',
+							keywords: State.params,
+							description: "Posts from Forging Technology, Vancouver Metalwork",
+							robots: "index,follow",
+							canonical: 'http://www.mySite.tld/home'
+						}
 					}
 				}
 			})
 			.state('metal.about', {
 				url: '/about',
 				template: '<content section="about" type="about"></content>',
-				animation: {
-					enter: 'slide-in-right-fade',
-					leave: 'slide-out-left-fade',
-					ease: 'sine',
-					speed: 600
+				data: function (State) {
+					return {
+						head: {
+							title: 'Forging Technology  - About',
+							keywords: State.params,
+							description: "Posts from Forging Technology, Vancouver Metalwork",
+							robots: "index,follow",
+							canonical: 'http://www.mySite.tld/home'
+						}
+					}
 				}
 			})
 			.state('metal.about.about', {
