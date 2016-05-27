@@ -1,9 +1,10 @@
-<div ng-style="{width:'100vw', height:'10vh', padding:'1em'}">
-    <div ng-style="{display:'flex', justifyContent:'space-between'}">
-        <h3 ng-style="{margin:0}">
+<div ng-style="{width:'100vw', height:'10vh', padding:'1em', display:'flex'}">
+    <div ng-style="{display:'flex', justifyContent:'space-between', width:'100%'}">
+        <a ui-sref="metal.home" ng-style="{margin:0}">
             Forging Technology Admin: {{admin.s.type | uppercase}} {{admin.s.section | uppercase}}
-        </h3>
-        <h3 class="button" ng-style="{margin:0}" ng-click="admin.s.show.addEntry = !admin.s.show.addEntry"><i class="fa fa-plus"></i>Add New Entry</h3>
+        </a>
+        <div ng-style="{textAlign:'right'}" ng-include="'scripts/admin/admin-auth.html'"></div>
+        <span ng-show="admin.s.auth" class="button" ng-style="{margin:0}" ng-click="admin.s.show.addEntry = !admin.s.show.addEntry"><i class="fa fa-plus"></i>Add New Entry</span>
     </div>
 </div>
 
@@ -16,20 +17,6 @@
         <div ng-style="{margin:0, flex: '1 1 auto'}"><a ui-sref="admin.media">Media</a></div>
         <div ng-style="{margin:0, flex: '1 1 auto'}"><a ui-sref="admin.site">Site</a></div>
         <div ng-style="{margin:0, flex: '1 1 auto'}"><a ui-sref="admin.messages">Messages</a></div>
-        <div ng-show="!admin.s.auth" >
-            <label for="email-login">
-                <h5>Email</h5>
-                <input type="email" id="email-login" ng-model="login.email" placeholder="Email">
-            </label>
-            <label for="pass-login">
-                <h5>Password</h5>
-                <input type="password" id="pass-login" ng-model="login.pass" placeholder="Password">
-
-            </label>
-            <p class="button" ng-click="admin.a.login(login.email, login.pass)"><i class="fa fa-unlock-alt"></i>Login</p>
-        </div>
-        <div class="danger" ng-show="admin.s.auth" ng-click="admin.a.logout()"><i class="fa fa-lock"></i>Logout</div>
-
     </div>
 
 

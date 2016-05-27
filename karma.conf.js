@@ -27,7 +27,7 @@ module.exports = function (config)
             'app/bower_components/firebase/firebase.js',
             'app/bower_components/angularfire/dist/angularfire.js',
             'app/bower_components/aws-sdk/dist/aws-sdk.js',
-            'app/bower_components/w11k.angular-seo-header/angular-seo-header.js',
+            'app/bower_components/ngMeta/dist/ngMeta.js',
             'app/bower_components/angular-mocks/angular-mocks.js',
             // endbower
 

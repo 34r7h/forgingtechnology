@@ -2,18 +2,29 @@
 <html class="dark-bg"  ng-app="numetal">
 <head>
     <base href="/">
-    <!--<title>Forging Technology</title>-->
+    <title>{{$root.ngMeta.title || 'Forging Technology'}}</title>
     <meta charset="utf-8">
     <meta name="viewport"
           content="width=device-width, initial-scale=1, user-scalable=no"/>
     <meta http-equiv="X-UA-Compatible"
           content="IE=edge"/>
-    <!--<meta name="description" content="Forging, metalwork, and home automation services in Vancouver, BC">-->
-    <!--<meta name="keywords"
-          content="">-->
+
+    <meta name="description" content="{{$root.ngMeta.description || 'Forging, metalwork, and home automation services in Vancouver, BC'}}">
+
+    <meta name="keywords"
+          content="{{'metal work, vancouver, bc' + $root.ngMeta.tags || 'metal work, driveway gates, railings, spiral staircase, iron, steel, home automation, Vancouver, BC'}}">
+
+    <meta name="author"
+          content="Bryce Masuk">
+
     <meta name="google-site-verification" content="85lWHEZfbQrR9PfTjnqCV5Btkif070bzLz6n4-ulaOw" />
     <meta name="google-site-verification" content="9aX0YvaC8wiZClbfiH7lqo3cmWZawtbM8B8DxnF_pPA" />
 
+    <meta property="og:url" content="https://forgingtechnology.com" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Forging Technology" />
+    <meta property="og:description" content="Forging, metalwork, and home automation services in Vancouver, BC" />
+    <meta property="og:image" content="https://s3-us-west-2.amazonaws.com/forgingtechnologies.com/1463835483000-spiralstairs-jpg-1460246041472.png" />
 
 
     <!-- Enable all requests and inline styles for painless development.
@@ -31,7 +42,7 @@ TODO configure more restrictive Content-Security-Policy
           href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
 </head>
 
-<body class="dark-bg white-text" >
+<body class="dark-bg white-text">
 
 <div class="ui-view-container"><main ui-view  class="fx-bounce-down " ng-cloak></main>
 </div>

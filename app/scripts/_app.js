@@ -17,5 +17,8 @@ angular.module('numetal', [
 	'ui.router',
 	'ngFabForm',
 	'firebase',
-	'w11k.angular-seo-header'
+	'ngMeta'
 ]);
+angular.module('numetal').run(function(ngMeta) {
+		ngMeta.init();
+	});

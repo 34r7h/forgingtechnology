@@ -1,0 +1,10 @@
+<span ng-show="!admin.s.auth" >
+    <label for="email-login">
+        <input ng-style="{maxWidth:'25%'}" type="email" id="email-login" ng-model="login.email" placeholder="Email">
+    </label>
+    <label for="pass-login">
+        <input ng-style="{maxWidth:'25%'}" type="password" id="pass-login" ng-model="login.pass" placeholder="Password">
+    </label>
+    <b class="" ng-click="admin.a.login(login.email, login.pass)"><i class="fa fa-unlock-alt"></i>Login</b>
+</span>
+<span ng-show="admin.s.auth" ng-click="admin.a.logout()"><i class="fa fa-lock"></i>Logout</span>

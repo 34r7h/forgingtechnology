@@ -5,7 +5,7 @@
      class="header-show-hide" ng-style="{position:'relative', height:'240px' }"
      ng-init="headerThumb ? headerThumb = metal.a.get('https://sizzling-fire-2548.firebaseio.com/media/'+ metal.d.object.media[metal.d.object.site.headerImg].name.replace('.','`') + '.json' ) : null">
     <img ng-if="metal.d.object.site.headerImg" alt=""
-         ng-src="{{headerThumb ? headerThumb.data.data: 'no image'}}"
+         ng-src="{{headerThumb ? headerThumb.data.data: 'metal.d.object.media[metal.d.object.site.headerImg].src'}}"
          ng-style="{position:'absolute', height:'240px', width:'100%', objectFit:'cover'}">
     <img ng-if="metal.d.object.site.headerImg" alt=""
          ng-src="{{metal.d.object.media[metal.d.object.site.headerImg].src}}"
