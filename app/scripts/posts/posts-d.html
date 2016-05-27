@@ -71,8 +71,19 @@
                 <p ng-style="{maxHeight:metal.d.object[val.$value][val.$id].media[0] ? '160px' : '480px', overflow:'hidden', fontSize: metal.d.object[val.$value][val.$id].media[0] ? '20px' : '36px'}">
                     {{metal.d.object[val.$value][val.$id].text}}
                 </p>
-                <a class="{{metal.d.object[val.$value][val.$id].section == 'services' ? 'button' : metal.d.object[val.$value][val.$id].section == 'clients' ? 'save' : metal.d.object[val.$value][val.$id].section == 'gallery' ?'warning' : 'danger'}} sheen"
+                <div ng-style="{display:'flex', justifyContent:'space-between'}">
+                    <a class="{{metal.d.object[val.$value][val.$id].section == 'services' ? 'button' : metal.d.object[val.$value][val.$id].section == 'clients' ? 'save' : metal.d.object[val.$value][val.$id].section == 'gallery' ?'warning' : 'danger'}} sheen"
                    ng-href="{{'/'+metal.d.object[val.$value][val.$id].section+'/'+val.$id}}">Read More..</a>
+                    <a target="_blank" ng-href="https://www.facebook.com/sharer/sharer.php?u=https%3A//forgingtechnology.com/{{metal.d.object[val.$value][val.$id].section + '/' + val.$id}}">
+                        <i ng-style="{color:'black'}" class="fa fa-facebook"></i>
+                    </a>
+                    <a target="_blank" ng-href="https://twitter.com/home?status=https%3A//forgingtechnology.com/{{metal.d.object[val.$value][val.$id].section + '/' + val.$id}}">
+                        <i ng-style="{color:'black'}" class="fa fa-twitter"></i>
+                    </a>
+                    <a target="_blank" ng-href="https://plus.google.com/share?url=https%3A//forgingtechnology.com/{{metal.d.object[val.$value][val.$id].section + '/' + val.$id}}">
+                        <i ng-style="{color:'black'}" class="fa fa-google-plus"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </div>

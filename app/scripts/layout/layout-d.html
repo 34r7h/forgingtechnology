@@ -30,7 +30,7 @@
 
 <div ng-style="{display:'flex'}" ng-cloak>
     <div ng-style="{width:metal.u.xy[0]<817?'80px':'160px', height:(metal.u.xy[1] - 60) +'px', padding:'2px', display:'flex', justifyContent:'space-between', alignItems:'center', alignContent:'center', flexDirection:'column', position:'fixed', top:'60px', background:'#555'}"
-         ng-init="nav = [{name:'services', icon:'star', style:'button'},{name:'clients', icon:'users', style:'save'},{name:'gallery', icon:'image', style:'warning'},{name:'about', icon:'info', style:'danger'},{name:'admin/posts', icon:'gears', style:'save'},]">
+         ng-init="nav = [{name:'services', icon:'star', style:'button'},{name:'clients', icon:'users', style:'save'},{name:'gallery', icon:'image', style:'warning'},{name:'about', icon:'info', style:'danger'}]">
 
         <a ng-href="{{link.name == 'home' ? '/' : '/'+ link.name}}" ng-repeat="link in nav"
            ng-style="{margin:0, flex: '1 1 auto', display:'flex', justifyContent:'center', alignItems:'center', width: '100%'}"
