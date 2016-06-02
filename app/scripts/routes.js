@@ -131,7 +131,7 @@ angular.module('numetal')
 					vm.d = Facts.data;
 					vm.s = Facts.state;
 					vm.u = Facts.ux;
-					Facts.api.go('admin.posts',{});
+					Facts.api.go('admin.posts');
 				},
 				controllerAs: 'admin'
 			})
