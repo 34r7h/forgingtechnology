@@ -124,13 +124,14 @@ angular.module('numetal')
 			})
 			.state('admin', {
 				url: '/admin',
-				template: '<div ng-include="\'scripts/admin/admin-auth.html\'"></div><ui-view></ui-view>',
+				template: '<ui-view></ui-view>',
 				controller: function (Facts) {
 					var vm = this;
 					vm.a = Facts.api;
 					vm.d = Facts.data;
 					vm.s = Facts.state;
 					vm.u = Facts.ux;
+					Facts.api.go('admin.posts',{});
 				},
 				controllerAs: 'admin'
 			})
