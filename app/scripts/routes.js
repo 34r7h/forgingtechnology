@@ -124,7 +124,7 @@ angular.module('numetal')
 			})
 			.state('admin', {
 				url: '/admin',
-				template: '<ui-view></ui-view>',
+				template: '<admin></admin>',
 				controller: function (Facts) {
 					var vm = this;
 					vm.a = Facts.api;
