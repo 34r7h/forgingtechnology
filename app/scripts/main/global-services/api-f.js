@@ -34,7 +34,7 @@ angular.module('numetal')
 		},
 			login: function (email, pass) {
 				var fbAuth = $firebaseAuth(Data.refs.fb);
-				fbAuth.$authWithPassword({email:email, password:pass}).then(function(authData) {
+				fbAuth.$authWithPassword({email:email.toLowerCase() === 'bryce' ? 'masukmetaldesign@gmail.com': email, password:pass}).then(function(authData) {
 					console.log('Logged in as:', authData.uid);
 					State.auth = authData;
 				}).catch(function(error) {
