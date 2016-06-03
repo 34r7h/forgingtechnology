@@ -1,61 +1,61 @@
 <div ng-style="{display:'flex', flexWrap:'wrap', flexDirection:'column'}">
     <label for="site-name">
         <h4>Site Name</h4>
-        <input type="text" ng-model=" admin.d.object.site.siteName" id="site-name">
+        <input type="text" ng-model=" metal.d.object.site.siteName" id="site-name">
     </label>
     <label for="phone">
         <h4>Phone Number</h4>
-        <input type="tel" ng-model=" admin.d.object.site.phone" id="phone">
+        <input type="tel" ng-model=" metal.d.object.site.phone" id="phone">
     </label>
     <label for="email">
         <h4>Email</h4>
-        <input type="email" ng-model=" admin.d.object.site.email" id="email">
+        <input type="email" ng-model=" metal.d.object.site.email" id="email">
     </label>
     <label for="site-description">
         <h4>Site Description</h4>
-        <textarea type="text" ng-model=" admin.d.object.site.siteDescription" id="site-description"></textarea>
+        <textarea type="text" ng-model=" metal.d.object.site.siteDescription" id="site-description"></textarea>
     </label>
     <label for="site-meta">
         <h4>Site Meta Tags</h4>
-        <textarea type="text" ng-model=" admin.d.object.site.siteMeta" id="site-meta"></textarea>
+        <textarea type="text" ng-model=" metal.d.object.site.siteMeta" id="site-meta"></textarea>
     </label>
     <hr>
     <h3>Social</h3>
     <label for="facebook-link">
         <h4>Facebook Link</h4>
-        <input type="text" ng-model=" admin.d.object.site.facebookLink" id="facebook-link">
+        <input type="text" ng-model=" metal.d.object.site.facebookLink" id="facebook-link">
     </label>
     <label for="google-link">
         <h4>Google Link</h4>
-        <input type="text" ng-model=" admin.d.object.site.googleLink" id="google-link">
+        <input type="text" ng-model=" metal.d.object.site.googleLink" id="google-link">
     </label>
     <label for="twitter-link">
         <h4>Twitter Link</h4>
-        <input type="text" ng-model=" admin.d.object.site.twitterLink" id="twitter-link">
+        <input type="text" ng-model=" metal.d.object.site.twitterLink" id="twitter-link">
     </label>
     <label for="pinterest-link">
         <h4>Pinterest Link</h4>
-        <input type="text" ng-model=" admin.d.object.site.pinterestLink" id="pinterest-link">
+        <input type="text" ng-model=" metal.d.object.site.pinterestLink" id="pinterest-link">
     </label>
     <label for="instagram-link">
         <h4>Instagram Link</h4>
-        <input type="text" ng-model=" admin.d.object.site.instagramLink" id="instagram-link">
+        <input type="text" ng-model=" metal.d.object.site.instagramLink" id="instagram-link">
     </label>
 
     <label for="header-text">
         <h4>Header Text</h4>
-        <input type="text" ng-model=" admin.d.object.site.headerText" id="header-text">
+        <input type="text" ng-model=" metal.d.object.site.headerText" id="header-text">
     </label>
-    <div>
-        <h4 ng-init="!admin.d.object.site.headerImg ? admin.d.object.site.headerImg = '' : null">Header Image</h4>
-        <img height="160px" width="100%" ng-src="{{admin.d.object.media[admin.d.object.site.headerImg].src}}" ng-style="{objectFit:'cover'}">
+    <h4 ng-click="metal.s.show.selectHeaderImg = !metal.s.show.selectHeaderImg" ng-init="!metal.d.object.site.headerImg ? metal.d.object.site.headerImg = '' : null">Header Image (Click here to change)</h4>
+    <img height="160px" width="160px" ng-src="{{metal.d.object.media[metal.d.object.site.headerImg].src}}" ng-style="{objectFit:'cover'}">
+    <div ng-if="metal.s.show.selectHeaderImg">
         <uploader></uploader>
-        <div ng-style="{display:'flex', justifyContent:'space-between', overflow:'scroll'}">
+        <div ng-style="{display:'flex', justifyContent:'space-between', flexWrap:'wrap'}">
 
             <img
-                    ng-repeat="(fileKey, file) in admin.d.object.media"
-                    ng-init="!siteThumb[$index] ? siteThumb[$index] = admin.a.get('https://sizzling-fire-2548.firebaseio.com/media/'+ file.name.replace('.','`') + '.json' ) : null"
-                    ng-click="admin.d.object.site.headerImg = fileKey"
+                    ng-repeat="(fileKey, file) in metal.d.object.media"
+                    ng-init="!siteThumb[$index] ? siteThumb[$index] = metal.a.get('https://sizzling-fire-2548.firebaseio.com/media/'+ file.name.replace('.','`') + '.json' ) : null"
+                    ng-click="metal.d.object.site.headerImg = fileKey"
                     ng-style="{flex:'0 0 80px',width:'80px', height: '80px'}"
                     ng-show="siteThumb[$index]"
                     ng-src="{{siteThumb[$index].data.data}}" alt="">
@@ -63,25 +63,24 @@
     </div>
     <label for="footer-text">
         <h4>Footer Text</h4>
-        <input type="text" ng-model="admin.d.object.site.footerText" id="footer-text">
+        <input type="text" ng-model="metal.d.object.site.footerText" id="footer-text">
     </label>
-    <div>
-        <h4 ng-init="!admin.d.object.site.footerImg ? admin.d.object.site.footerImg = '' : null">Footer Image</h4>
-        <img height="160px" width="100%" ng-src="{{admin.d.object.media[admin.d.object.site.footerImg].src}}" ng-style="{objectFit:'cover'}">
+    <h4 ng-click="metal.s.show.selectFooterImg = !metal.s.show.selectFooterImg" ng-init="!metal.d.object.site.footerImg ? metal.d.object.site.footerImg = '' : null">Footer Image (Click here to change)</h4>
+    <img height="160px" width="160px" ng-src="{{metal.d.object.media[metal.d.object.site.footerImg].src}}" ng-style="{objectFit:'cover'}">
+    <div ng-if="metal.s.show.selectFooterImg">
         <uploader></uploader>
-        <div ng-style="{display:'flex', justifyContent:'space-between', overflow:'scroll'}">
-
+        <div ng-style="{display:'flex', flexWrap:'wrap', justifyContent:'space-between'}">
             <img
-                    ng-repeat="(fileKey, file) in admin.d.object.media"
-                    ng-init="!siteFootThumb[$index] ? siteFootThumb[$index] = admin.a.get('https://sizzling-fire-2548.firebaseio.com/media/'+ file.name.replace('.','`') + '.json' ) : null"
-                    ng-click="admin.d.object.site.footerImg = fileKey"
+                    ng-repeat="(fileKey, file) in metal.d.object.media"
+                    ng-init="!siteFootThumb[$index] ? siteFootThumb[$index] = metal.a.get('https://sizzling-fire-2548.firebaseio.com/media/'+ file.name.replace('.','`') + '.json' ) : null"
+                    ng-click="metal.d.object.site.footerImg = fileKey"
                     ng-style="{flex:'0 0 80px',width:'80px', height: '80px'}"
                     ng-show="siteFootThumb[$index]"
                     ng-src="{{siteFootThumb[$index].data.data}}" alt="">
         </div>
     </div>
     <hr>
-    <div ng-click="admin.a.saveSite( admin.d.object.site)">
+    <div ng-click="metal.a.saveSite( metal.d.object.site)">
         <b class="save"><i class="fa fa-floppy-o"> </i> SAVE</b>
     </div>
 </div>

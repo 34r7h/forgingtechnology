@@ -1,48 +1,48 @@
-<h2 ng-init="oldObj = []">Edit {{admin.s.type | uppercase}}</h2>
+<h2 ng-init="oldObj = []">Edit {{metal.s.type | uppercase}}</h2>
 <div
-        ng-repeat="(key, val) in admin.d.object.index.sections[admin.s.type]"
+        ng-repeat="(key, val) in metal.d.object.index.sections[metal.s.type]"
         ng-style="{background:'rgba(0,0,0,.1)', marginBottom:'10px', padding:'10px'}"
-        ng-init="oldObject[$index] = admin.a.copy(admin.d.object.content[key])">
-    <h2 ng-show="!admin.s.show.changeName[key]"
-        ng-click="admin.s.show.changeName[key] = true">
-        {{admin.d.object.content[key].name}}</h2>
-    <div><input ng-blur="admin.s.show.changeName[key] = false" ng-show="admin.s.show.changeName[key]" type="text"
-                ng-model="admin.d.object.content[key].name">
-        <input type="checkbox" ng-model="admin.d.object.content[key].publish" id="published"> Published
+        ng-init="oldObject[$index] = metal.a.copy(metal.d.object.content[key])">
+    <h2 ng-show="!metal.s.show.changeName[key]"
+        ng-click="metal.s.show.changeName[key] = true">
+        {{metal.d.object.content[key].name}}</h2>
+    <div><input ng-blur="metal.s.show.changeName[key] = false" ng-show="metal.s.show.changeName[key]" type="text"
+                ng-model="metal.d.object.content[key].name">
+        <input type="checkbox" ng-model="metal.d.object.content[key].publish" id="published"> Published
     </div>
-    <textarea ng-style="{width:'100%'}" ng-model="admin.d.object.content[key].text"></textarea>
+    <textarea ng-style="{width:'100%'}" ng-model="metal.d.object.content[key].text"></textarea>
 
     <label for="change-section"><p>Change Section</p>
-        <select name="change-section" id="change-section" ng-model="admin.d.object.content[key].section">
+        <select name="change-section" id="change-section" ng-model="metal.d.object.content[key].section">
             <option value="{{sectionKey}}"
-                    ng-repeat="(sectionKey, section) in $parent.admin.d.object.index.sections">
+                    ng-repeat="(sectionKey, section) in metal.d.object.index.sections">
                 {{sectionKey}}
             </option>
             <option value="new section">New Section</option>
         </select>
-                <span ng-show="admin.d.object.content[key].section === 'new section'">
+                <span ng-show="metal.d.object.content[key].section === 'new section'">
                     <input
                             id="change-newsection"
                             placeholder="Change Section"
                             type="text" ng-model="changeNewSection"
-                            ng-blur="!admin.d.object.index.sections[changeNewSection] ? admin.d.object.index.sections[changeNewSection] = {} : null; admin.d.object.content[key].section = changeNewSection">
+                            ng-blur="!metal.d.object.index.sections[changeNewSection] ? metal.d.object.index.sections[changeNewSection] = {} : null; metal.d.object.content[key].section = changeNewSection">
                 </span>
     </label>
 
     <div>
-        <span ng-init="!admin.d.object.content[key].tags ? admin.d.object.content[key].tags = [] : null">Select Tags</span>
+        <span ng-init="!metal.d.object.content[key].tags ? metal.d.object.content[key].tags = [] : null">Select Tags</span>
         <div ng-style="{display:'flex', flexWrap:'wrap', justifyContent:'flex-start'}">
             <input
                     id="change-tags"
                     type="text"
                     ng-model="contentNewTag"
                     placeholder="Add another tag"
-                    ng-change="contentNewTag.indexOf(',') !== -1 ? clearContentTag = true: null; contentNewTag.indexOf(',') !== -1 ? admin.d.object.content[key].tags.push(contentNewTag.replace(',','')) : null; clearContentTag ? contentNewTag = null : null; clearContentTag = false"
-                    ng-blur="contentNewTag.length > 0 ? clearContentTag = true: null; contentNewTag.length > 0 ? admin.d.object.content[key].tags.push(contentNewTag): null; clearContentTag ? contentNewTag = null: null; clearContentTag = false">
+                    ng-change="contentNewTag.indexOf(',') !== -1 ? clearContentTag = true: null; contentNewTag.indexOf(',') !== -1 ? metal.d.object.content[key].tags.push(contentNewTag.replace(',','')) : null; clearContentTag ? contentNewTag = null : null; clearContentTag = false"
+                    ng-blur="contentNewTag.length > 0 ? clearContentTag = true: null; contentNewTag.length > 0 ? metal.d.object.content[key].tags.push(contentNewTag): null; clearContentTag ? contentNewTag = null: null; clearContentTag = false">
                         <span
-                                ng-repeat="(tagKey, tag) in admin.d.object.content[key].tags track by $index"
+                                ng-repeat="(tagKey, tag) in metal.d.object.content[key].tags track by $index"
                                 ng-style="{border:'1px solid black', margin:'2px'}"
-                                ng-click="admin.d.object.content[key].tags.splice(tagKey,1);">
+                                ng-click="metal.d.object.content[key].tags.splice(tagKey,1);">
                             <span ng-style="{color:'white', background:'black', padding:'0 1px'}">x</span>
                             <b ng-style="{color:'black',background:'white', padding:'0 1px'}"> {{tag}}</b>
                         </span>
@@ -51,40 +51,40 @@
     </div>
 
     <div>
-        <h5 ng-init="!admin.d.object.content[key].content ? admin.d.object.content[key].content = [] : null">
+        <h5 ng-init="!metal.d.object.content[key].content ? metal.d.object.content[key].content = [] : null">
             Attach Content</h5>
                     <span
-                            ng-repeat="(contentKey, content) in admin.d.object.content">
+                            ng-repeat="(contentKey, content) in metal.d.object.content">
                         <input
-                                ng-init="attachedContent = admin.d.object.content[key].content.indexOf(contentKey) >=0 ? true : false"
-                                ng-change="attachedContent ? admin.d.object.content[key].content.push(contentKey) : admin.d.object.content[key].content.splice(admin.d.object.content[key].content.indexOf(contentKey),1); !admin.d.object.content[key].content ? admin.d.object.content[key].content = []: null;"
+                                ng-init="attachedContent = metal.d.object.content[key].content.indexOf(contentKey) >=0 ? true : false"
+                                ng-change="attachedContent ? metal.d.object.content[key].content.push(contentKey) : metal.d.object.content[key].content.splice(metal.d.object.content[key].content.indexOf(contentKey),1); !metal.d.object.content[key].content ? metal.d.object.content[key].content = []: null;"
                                 type="checkbox"
                                 ng-model="attachedContent"> {{content.name}} {{content.section}}
                     </span>
     </div>
 
     <div>
-        <h4 ng-click="admin.s.show.contentMedia = !admin.s.show.contentMedia">Media Attachments</h4>
-        <div ng-if="admin.s.show.contentMedia">
+        <h4 ng-click="metal.s.show.contentMedia = !metal.s.show.contentMedia">Media Attachments</h4>
+        <div ng-if="metal.s.show.contentMedia">
             <div ng-style="{display:'flex', justifyContent:'space-between', overflow:'scroll'}">
                 <uploader></uploader>
                 <img
-                        ng-repeat="(fileKey, file) in admin.d.object.media"
-                        ng-init="!attachThumb ? attachThumb = admin.a.get('https://sizzling-fire-2548.firebaseio.com/media/'+ file.name.replace('.','`') + '.json' ) : null"
-                        ng-click="admin.d.object.content[key].media.indexOf(fileKey) < 0 ? admin.d.object.content[key].media.push(fileKey): null"
-                        ng-style="{flex:'0 0 80px',width:'80px', height: '80px', border: admin.d.object.content[key].media.indexOf(fileKey) >=0 ? 'rgba(0,0,0,.3) 2px solid': 'none'}"
+                        ng-repeat="(fileKey, file) in metal.d.object.media"
+                        ng-init="!attachThumb ? attachThumb = metal.a.get('https://sizzling-fire-2548.firebaseio.com/media/'+ file.name.replace('.','`') + '.json' ) : null"
+                        ng-click="metal.d.object.content[key].media.indexOf(fileKey) < 0 ? metal.d.object.content[key].media.push(fileKey): null"
+                        ng-style="{flex:'0 0 80px',width:'80px', height: '80px', border: metal.d.object.content[key].media.indexOf(fileKey) >=0 ? 'rgba(0,0,0,.3) 2px solid': 'none'}"
                         ng-show="attachThumb"
                         ng-src="{{attachThumb.data.data}}" alt="">
             </div>
         </div>
         <div>
-            <h5 ng-init="!admin.d.object.content[key].media ? admin.d.object.content[key].media = []: null">
+            <h5 ng-init="!metal.d.object.content[key].media ? metal.d.object.content[key].media = []: null">
                 Attached images</h5>
             <div ng-style="{display:'flex', flexWrap:'wrap', justifyContent:'space-around'}">
                 <img
-                        ng-repeat="(fileKey, file) in admin.d.object.content[key].media"
-                        ng-init="!contentThumb ? contentThumb = admin.a.get('https://sizzling-fire-2548.firebaseio.com/media/'+ admin.d.object.media[file].name.replace('.','`') + '.json' ) : null"
-                        ng-click="admin.d.object.content[key].media.splice(fileKey, 1)"
+                        ng-repeat="(fileKey, file) in metal.d.object.content[key].media"
+                        ng-init="!contentThumb ? contentThumb = metal.a.get('https://sizzling-fire-2548.firebaseio.com/media/'+ metal.d.object.media[file].name.replace('.','`') + '.json' ) : null"
+                        ng-click="metal.d.object.content[key].media.splice(fileKey, 1)"
                         ng-style="{flex:'0 1 auto',width:'320px', height: '320px'}"
                         ng-show="contentThumb"
                         ng-src="{{contentThumb.data.data}}" alt=""></div>
@@ -92,7 +92,7 @@
 
     </div>
     <h1 class="save"
-            ng-click="oldObject[$index] = admin.a.save('content', key, admin.d.object.content[key], oldObject[$index]); "
+            ng-click="oldObject[$index] = metal.a.save('content', key, metal.d.object.content[key], oldObject[$index]); "
     ><i class="fa fa-floppy-o"> </i> Save</h1>
-    <h3 class="danger" ng-click="admin.a.rm('content', key)">Remove Entry: {{admin.d.object.content[key].name}}</h3>
+    <h3 class="danger" ng-click="metal.a.rm('content', key)">Remove Entry: {{nometal.d.object.content[key].name}}</h3>
 </div>

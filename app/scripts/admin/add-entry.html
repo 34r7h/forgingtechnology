@@ -15,7 +15,7 @@
             <h4>Choose Section</h4>
             <select name="choose-section" id="add-section" ng-model="add.section">
                 <option value="{{sectionKey}}"
-                        ng-repeat="(sectionKey, section) in admin.d.object.index.sections"
+                        ng-repeat="(sectionKey, section) in metal.d.object.index.sections"
                         ng-init="$first ? add.section = sectionKey : null">{{sectionKey}}
                 </option>
                 <option value="new section">New Section</option>
@@ -25,7 +25,7 @@
                             id="add-newsection"
                             placeholder="Add Section"
                             type="text" ng-model="newSection"
-                            ng-blur="admin.d.object.index.sections[newSection] = {}; add.section = newSection">
+                            ng-blur="metal.d.object.index.sections[newSection] = {}; add.section = newSection">
                 </span>
         </label>
         <label ng-style="addFlex" for="add-tags">
@@ -49,7 +49,7 @@
         </label>
         <span ng-style="addFlex">
             <h4 ng-init="add.content = []">Attach Content</h4>
-                <span ng-repeat="(contentKey, content) in admin.d.object.content">
+                <span ng-repeat="(contentKey, content) in metal.d.object.content">
                     <label for="content-{{$index}}">
                         <input id="content-{{$index}}" type="checkbox"
                                ng-change="attachContent ? add.content.push(contentKey) : add.content.splice(add.content.indexOf(contentKey), 1)"
@@ -66,8 +66,8 @@
 
             <uploader></uploader>
             <img
-                    ng-repeat="(fileKey, file) in admin.d.object.media"
-                    ng-init="!attachThumb ? attachThumb = admin.a.get('https://sizzling-fire-2548.firebaseio.com/media/'+ file.name.replace('.','`') + '.json' ) : null"
+                    ng-repeat="(fileKey, file) in metal.d.object.media"
+                    ng-init="!attachThumb ? attachThumb = metal.a.get('https://sizzling-fire-2548.firebaseio.com/media/'+ file.name.replace('.','`') + '.json' ) : null"
                     ng-click="$parent.add.media.indexOf(fileKey) < 0 ? $parent.add.media.push(fileKey) : $parent.add.media.splice($parent.add.media.indexOf(fileKey),1);"
                     ng-style="{flex:'0 0 auto',width:'80px', height: '80px', border: $parent.add.media.indexOf(fileKey) >=0 ? 'rgba(0,0,0,.3) 2px solid': 'none'}"
                     ng-show="attachThumb"
@@ -81,7 +81,7 @@
         </label>
         <div ng-style="addFlex">
             <div ng-style="{width:'100%'}">
-                <p class="save" ng-show="add.name" ng-click="admin.a.add('content', add); add={};"><i class="fa fa-plus"> </i> Add entry</p>
+                <p class="save" ng-show="add.name" ng-click="metal.a.add('content', add); add={};"><i class="fa fa-plus"> </i> Add entry</p>
                 <p class="disabled" ng-show="!add.name" ng-style="{color:'red'}">* Entries must have a name.</p>
             </div>
         </div>

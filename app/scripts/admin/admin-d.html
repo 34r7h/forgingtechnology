@@ -1,53 +1,25 @@
-<div ng-style="{width:'100vw', height:'10vh', padding:'1em', display:'flex'}">
-    <div ng-style="{display:'flex', justifyContent:'space-between', width:'100%'}">
-        <a ui-sref="metal.home" ng-style="{margin:0}">
-            Forging Technology Admin: {{admin.s.type | uppercase}} {{admin.s.section | uppercase}}
-        </a>
-        <div ng-style="{textAlign:'right'}" ng-include="'scripts/admin/admin-auth.html'"></div>
-        <span ng-show="admin.s.auth" class="button" ng-style="{margin:0}" ng-click="admin.s.show.addEntry = !admin.s.show.addEntry"><i class="fa fa-plus"></i>Add New Entry</span>
-    </div>
-</div>
-
-<div ng-style="{display:'flex'}">
-    <div ng-style="{width: '20vw' , height:'90vh', padding:'1em', display:'flex', justifyContent:'space-between', flexDirection:'column'}">
-        <div ng-style="{margin:0, flex: '1 1 auto'}"><a ui-sref="metal.home">Home</a></div>
-        <div ng-style="{margin:0, flex: '1 1 auto'}"><a ui-sref="admin.services">Services</a></div>
-        <div ng-style="{margin:0, flex: '1 1 auto'}"><a ui-sref="admin.clients">Clients</a></div>
-        <div ng-style="{margin:0, flex: '1 1 auto'}"><a ui-sref="admin.posts">Posts</a></div>
-        <div ng-style="{margin:0, flex: '1 1 auto'}"><a ui-sref="admin.media">Media</a></div>
-        <div ng-style="{margin:0, flex: '1 1 auto'}"><a ui-sref="admin.site">Site</a></div>
-        <div ng-style="{margin:0, flex: '1 1 auto'}"><a ui-sref="admin.messages">Messages</a></div>
-        <div ng-style="{textAlign:'right'}" ng-include="'scripts/admin/admin-auth.html'"></div>
+    <div ng-style="{width:'100%', padding:'10px', display:'flex', justifyContent:'space-between'}">
+            <b>
+                Forging Technology Admin
+            </b>
+            <div ng-style="{textAlign:'right'}" ng-include="'scripts/admin/admin-auth.html'"></div>
+            <span ng-show="metal.s.auth" class="button" ng-style="{margin:0}" ui-sref="metal.admin.add"><i
+                    class="fa fa-plus"></i>Add New Entry</span>
     </div>
 
+    <div ng-style="{display:'flex'}">
+        <div ng-style="{flex:'1 1 20%',padding:'10px'}">
+            <div ng-style="{margin:'10px 0', flex: '1 1 auto'}"><a ui-sref="metal.admin.services">Services</a></div>
+            <div ng-style="{margin:'10px 0', flex: '1 1 auto'}"><a ui-sref="metal.admin.clients">Clients</a></div>
+            <div ng-style="{margin:'10px 0', flex: '1 1 auto'}"><a ui-sref="metal.admin.posts">Posts</a></div>
+            <div ng-style="{margin:'10px 0', flex: '1 1 auto'}"><a ui-sref="metal.admin.media">Media</a></div>
+            <div ng-style="{margin:'10px 0', flex: '1 1 auto'}"><a ui-sref="metal.admin.site">Site</a></div>
+            <div ng-style="{margin:'10px 0', flex: '1 1 auto'}"><a ui-sref="metal.admin.messages">Messages</a></div>
+            <div ng-style="{textAlign:'right'}" ng-include="'scripts/admin/admin-auth.html'"></div>
+        </div>
 
-    <div ng-style="{width:'80vw', height:'90vh', padding:'1em'}">
 
-        <div ng-style="{zIndex:10}">
-            <div ng-if="admin.s.show.addEntry"
-                 ng-include="'scripts/admin/add-entry.html'">
-            </div>
-            <div ng-if="!admin.s.show.addEntry"
-                 ng-include="'scripts/admin/edit-entries.html'">
-            </div>
-            <div ng-if="admin.s.show.showMedia"
-                 ng-include="'scripts/admin/edit-media.html'">
-            </div>
-            <div ng-if="admin.s.show.editSite"
-                 ng-include="'scripts/admin/edit-site.html'">
-            </div>
-            <div ng-if="admin.s.show.editPosts"
-                 ng-include="'scripts/admin/edit-posts.html'">
-            </div>
-            <div ng-style="{display:'flex', flexDirection:'column', justifyContent:'space-between', flexWrap:'wrap'}"
-                 ng-init="messages = admin.a.get('https://sizzling-fire-2548.firebaseio.com/messages.json')" ng-if="admin.s.show.messages">
-                <div class="red-bg" ng-style="{padding:'10px', margin:'2px', display:'flex',alignItems:'center', justifyContent:'space-between', flexWrap:'wrap'}" ng-repeat="(msgKey, msgVal) in messages.data.data">
-                    <a ng-href="{{'mailto:'+msgVal.from}}"><i class="fa fa-envelope-o"></i>{{msgVal.from}}</a>
-                    <b>{{msgVal.subject}}</b>
-                    <p>{{msgVal.text}}</p>
-                </div>
-            </div>
+        <div ng-style="{flex:'1 1 80%', padding:'10px', marginBottom:'80px'}">
+                <ui-view></ui-view>
         </div>
     </div>
-</div>
-

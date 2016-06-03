@@ -11,11 +11,6 @@ angular.module('numetal')
     {
         return {
             templateUrl: 'scripts/admin/admin-d.html',
-            restrict: 'EA',
-            controller: function ($scope, $attrs)
-            {
-	            $scope.$parent.admin.s.type = $attrs.type;
-	            $scope.$parent.admin.s.section = $attrs.section;
-            }
+            restrict: 'EA'
         };
     });
