@@ -133,7 +133,7 @@ angular.module('numetal')
 				/**/
 				function deleteFile() {
 					function getKeys(url){
-						var getData = Api.get(url);
+						var getData = api.get(url);
 						var returnData = {};
 						var dataFn = function () {
 							while(!getData.data){

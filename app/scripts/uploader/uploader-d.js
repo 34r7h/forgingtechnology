@@ -91,7 +91,7 @@ angular.module('numetal').directive('uploader', function (Api) {
 				console.info('End Upload to S3', performance.now() - startTime);
 			};
 		},
-		link: function (scope, el) {
+		link: function (scope, el, $timeout) {
 			function getKeys(url){
 				var getData = Api.get(url);
 				var returnData = {};
