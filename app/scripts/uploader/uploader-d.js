@@ -7,14 +7,14 @@
 
 'use strict';
 var AWS = AWS;
-angular.module('numetal').directive('uploader', function () {
+angular.module('numetal').directive('uploader', function (Api) {
 	return {
 		restrict: 'AE',
 		templateUrl: 'scripts/uploader/uploader-d.html',
 		scope: {
 			file: '@'
 		},
-		controller: function ($scope, Api, $firebaseObject, Data, $timeout) {
+		controller: function ($scope, $firebaseObject, Data, $timeout) {
 			$scope.uploadS3 = function () {
 				var startTime;
 				console.info('Begin Uploading to S3', startTime = performance.now());
@@ -91,7 +91,7 @@ angular.module('numetal').directive('uploader', function () {
 				console.info('End Upload to S3', performance.now() - startTime);
 			};
 		},
-		link: function (scope, el, Api) {
+		link: function (scope, el) {
 			console.log(Api);
 			scope.creds = {
 				// TODO: Get process VARS from Heroku
