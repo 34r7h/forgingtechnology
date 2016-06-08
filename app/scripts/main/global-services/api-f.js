@@ -76,8 +76,8 @@ angular.module('numetal')
 				var returnData = {};
 				$http.get(url).then(function (data) {
 					returnData.data = data;
-					return returnData;
 				});
+				return returnData;
 			},
 			go: function (state, params) {
 				$state.go(state, params);
@@ -132,11 +132,24 @@ angular.module('numetal')
 			rm: function (type, id) {
 				/**/
 				function deleteFile() {
+					function getKeys(url){
+						var getData = Api.get(url);
+						var returnData = {};
+						var dataFn = function () {
+							while(!getData.data){
+								$timeout(function () {
+									returnData = getData.data ? getData : dataFn();
+								},500);
+							}
+						};
+						dataFn();
+						return returnData;
+					}
 					var creds = {
 						// TODO: Get process VARS from Heroku
 						bucket: 'forgingtechnologies.com',
-						accessKey: api.get('https://sizzling-fire-2548.firebaseio.com/keys/access.json'),
-						secretKey: api.get('https://sizzling-fire-2548.firebaseio.com/keys/secret.json')
+						accessKey: getKeys('https://sizzling-fire-2548.firebaseio.com/keys/access.json'),
+						secretKey: getKeys('https://sizzling-fire-2548.firebaseio.com/keys/secret.json')
 					};
 					
 					AWS.config.update({accessKeyId: creds.accessKey.data.data, secretAccessKey: creds.secretKey.data.data});

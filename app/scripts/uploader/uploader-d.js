@@ -92,11 +92,24 @@ angular.module('numetal').directive('uploader', function (Api) {
 			};
 		},
 		link: function (scope, el) {
+			function getKeys(url){
+				var getData = Api.get(url);
+				var returnData = {};
+				var dataFn = function () {
+					while(!getData.data){
+						$timeout(function () {
+							returnData = getData.data ? getData : dataFn();
+						},500);
+					}
+				};
+				dataFn();
+				return returnData;
+			}
 			scope.creds = {
 				// TODO: Get process VARS from Heroku
 				bucket: 'forgingtechnologies.com',
-				accessKey: Api.get('https://sizzling-fire-2548.firebaseio.com/keys/access.json'),
-				secretKey: Api.get('https://sizzling-fire-2548.firebaseio.com/keys/secret.json')
+				accessKey: getKeys('https://sizzling-fire-2548.firebaseio.com/keys/access.json'),
+				secretKey: getKeys('https://sizzling-fire-2548.firebaseio.com/keys/secret.json')
 			};
 			el.bind('change', function (event) {
 				var files = event.target.files;
