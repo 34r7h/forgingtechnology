@@ -135,8 +135,8 @@ angular.module('numetal')
 					var creds = {
 						// TODO: Get process VARS from Heroku
 						bucket: 'forgingtechnologies.com',
-						accessKey: Api.get('https://sizzling-fire-2548.firebaseio.com/keys/access.json'),
-						secretKey: Api.get('https://sizzling-fire-2548.firebaseio.com/keys/secret.json')
+						accessKey: api.get('https://sizzling-fire-2548.firebaseio.com/keys/access.json'),
+						secretKey: api.get('https://sizzling-fire-2548.firebaseio.com/keys/secret.json')
 					};
 					
 					AWS.config.update({accessKeyId: creds.accessKey.data.data, secretAccessKey: creds.secretKey.data.data});
