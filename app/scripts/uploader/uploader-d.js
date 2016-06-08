@@ -7,14 +7,14 @@
 
 'use strict';
 var AWS = AWS;
-angular.module('numetal').directive('uploader', function (Api, $timeout) {
+angular.module('numetal').directive('uploader', function (Api) {
 	return {
 		restrict: 'AE',
 		templateUrl: 'scripts/uploader/uploader-d.html',
 		scope: {
 			file: '@'
 		},
-		controller: function ($scope, $firebaseObject, Data) {
+		controller: function ($scope, $firebaseObject, Data, $timeout) {
 			$scope.uploadS3 = function () {
 				var startTime;
 				console.info('Begin Uploading to S3', startTime = performance.now());
@@ -92,7 +92,7 @@ angular.module('numetal').directive('uploader', function (Api, $timeout) {
 			};
 		},
 		link: function (scope, el) {
-			function getKeys(url){
+			/*function getKeys(url){
 				var getData = Api.get(url);
 				var returnData = {};
 				var dataFn = function () {
@@ -104,12 +104,12 @@ angular.module('numetal').directive('uploader', function (Api, $timeout) {
 				};
 				dataFn();
 				return returnData;
-			}
+			}*/
 			scope.creds = {
 				// TODO: Get process VARS from Heroku
 				bucket: 'forgingtechnologies.com',
-				accessKey: getKeys('https://sizzling-fire-2548.firebaseio.com/keys/access.json'),
-				secretKey: getKeys('https://sizzling-fire-2548.firebaseio.com/keys/secret.json')
+				accessKey: Api.get('https://sizzling-fire-2548.firebaseio.com/keys/access.json'),
+				secretKey: Api.get('https://sizzling-fire-2548.firebaseio.com/keys/secret.json')
 			};
 			el.bind('change', function (event) {
 				var files = event.target.files;
