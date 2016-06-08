@@ -92,7 +92,6 @@ angular.module('numetal').directive('uploader', function (Api) {
 			};
 		},
 		link: function (scope, el) {
-			console.log(Api);
 			scope.creds = {
 				// TODO: Get process VARS from Heroku
 				bucket: 'forgingtechnologies.com',
