@@ -139,7 +139,7 @@ angular.module('numetal')
 						secretKey: Api.get('https://sizzling-fire-2548.firebaseio.com/keys/secret.json')
 					};
 					
-					AWS.config.update({accessKeyId: creds.accessKey, secretAccessKey: creds.secretKey});
+					AWS.config.update({accessKeyId: creds.accessKey.data.data, secretAccessKey: creds.secretKey.data.data});
 					AWS.config.region = 'us-west-2';
 					
 					var bucketInstance = new AWS.S3();

@@ -18,7 +18,7 @@ angular.module('numetal').directive('uploader', function (Api) {
 			$scope.uploadS3 = function () {
 				var startTime;
 				console.info('Begin Uploading to S3', startTime = performance.now());
-				AWS.config.update({accessKeyId: $scope.creds.accessKey, secretAccessKey: $scope.creds.secretKey});
+				AWS.config.update({accessKeyId: $scope.creds.accessKey.data.data, secretAccessKey: $scope.creds.secretKey.data.data});
 				AWS.config.region = 'us-west-2';
 				var bucket = new AWS.S3({params: {Bucket: $scope.creds.bucket}});
 				var time = Date.now();
