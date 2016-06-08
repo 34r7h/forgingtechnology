@@ -76,8 +76,8 @@ angular.module('numetal')
 				var returnData = {};
 				$http.get(url).then(function (data) {
 					returnData.data = data;
+					return returnData;
 				});
-				return returnData;
 			},
 			go: function (state, params) {
 				$state.go(state, params);
