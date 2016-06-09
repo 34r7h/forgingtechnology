@@ -154,19 +154,20 @@ angular.module('numetal')
 						Data.object.index.media[id] = null;
 						Data.object.$save();
 						data.$save();
+						$timeout(function () {
+							AWS.config.update({accessKeyId: creds.accessKey.data.data, secretAccessKey: creds.secretKey.data.data});
+							AWS.config.region = 'us-west-2';
 
-						AWS.config.update({accessKeyId: creds.accessKey.data.data, secretAccessKey: creds.secretKey.data.data});
-						AWS.config.region = 'us-west-2';
-
-						var bucketInstance = new AWS.S3();
-						bucketInstance.deleteObject(params, function (err, success) {
-							if (success) {
-								// console.log('File deleted successfully');
-							}
-							else {
-								console.log('Check if you have sufficient permissions : ' + err);
-							}
-						});
+							var bucketInstance = new AWS.S3();
+							bucketInstance.deleteObject(params, function (err, success) {
+								if (success) {
+									// console.log('File deleted successfully');
+								}
+								else {
+									console.log('Check if you have sufficient permissions : ' + err);
+								}
+							});
+						}, 2000);
 
 					});
 				}
