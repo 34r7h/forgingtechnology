@@ -134,21 +134,6 @@ angular.module('numetal')
 				function deleteFile() {
 					var creds = {
 						// TODO: Get process VARS from Heroku
-
-						/*function getKeys(url){
-						var getData = api.get(url);
-						var returnData = {};
-						var dataFn = function () {
-							while(!getData.data){
-								$timeout(function () {
-									returnData = getData.data ? getData : dataFn();
-								},500);
-							}
-						};
-						dataFn();
-						return returnData;
-					}*/
-
 						bucket: 'forgingtechnologies.com',
 						accessKey: api.get('https://sizzling-fire-2548.firebaseio.com/keys/access.json'),
 						secretKey: api.get('https://sizzling-fire-2548.firebaseio.com/keys/secret.json')
@@ -162,14 +147,7 @@ angular.module('numetal')
 						Bucket: creds.bucket,
 						Key: Data.object[type][id].name
 					};
-					bucketInstance.deleteObject(params, function (err, data) {
-						if (data) {
-							// console.log('File deleted successfully');
-						}
-						else {
-							console.log('Check if you have sufficient permissions : ' + err);
-						}
-					});
+
 					Data.media = $firebaseObject(Data.refs.media).$loaded().then(function (data) {
 						Data.object.media[id].tags ? angular.forEach(Data.object.media[id].tags, function (tag) {
 							Data.object.index.tags[tag][id] = null;
@@ -180,6 +158,16 @@ angular.module('numetal')
 						Data.object.index.media[id] = null;
 						Data.object.$save();
 						data.$save();
+
+						bucketInstance.deleteObject(params, function (err, success) {
+							if (success) {
+								// console.log('File deleted successfully');
+							}
+							else {
+								console.log('Check if you have sufficient permissions : ' + err);
+							}
+						});
+
 					});
 				}
 				
