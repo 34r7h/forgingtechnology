@@ -138,6 +138,10 @@ angular.module('numetal')
 						accessKey: api.get('https://sizzling-fire-2548.firebaseio.com/keys/access.json'),
 						secretKey: api.get('https://sizzling-fire-2548.firebaseio.com/keys/secret.json')
 					};
+					var params = {
+						Bucket: creds.bucket,
+						Key: Data.object[type][id].name
+					};
 
 
 					Data.media = $firebaseObject(Data.refs.media).$loaded().then(function (data) {
@@ -150,15 +154,11 @@ angular.module('numetal')
 						Data.object.index.media[id] = null;
 						Data.object.$save();
 						data.$save();
-						
+
 						AWS.config.update({accessKeyId: creds.accessKey.data.data, secretAccessKey: creds.secretKey.data.data});
 						AWS.config.region = 'us-west-2';
 
 						var bucketInstance = new AWS.S3();
-						var params = {
-							Bucket: creds.bucket,
-							Key: Data.object[type][id].name
-						};
 						bucketInstance.deleteObject(params, function (err, success) {
 							if (success) {
 								// console.log('File deleted successfully');
