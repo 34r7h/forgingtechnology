@@ -10,12 +10,11 @@
         <label for="email-body">
             <textarea width="100%" ng-model="msg.emailBody" id="email-body" placeholder="Type your message"></textarea>
         </label>
-        <p ng-show="!metal.s.msgSent" class="save" ng-click="metal.s.msgSent = true; metal.a.email(msg.emailSubject, msg.emailBody, msg.emailAddress); msg = {}">
-            SEND E-MAIL
+        <p class="save" ng-click="metal.s.msgSent = true; metal.a.email(msg.emailSubject, msg.emailBody, msg.emailAddress); msg = {}" ng-disabled="metal.s.msgSent">
+            <b ng-show="!metal.s.msgSent">SEND E-MAIL</b>
+            <b ng-show="metal.s.msgSent">Message Sent!</b>
         </p>
-        <p ng-show="metal.s.msgSent">
-            Message sent, thank you!
-        </p>
+
     </form>
     <div>
     <div ng-style="{flexWrap:'wrap',display:'flex', flex:'1 1 50%', width:'360px', justifyContent:'center', alignItems:'center', minWidth:'240px', padding:'6px'}">
