@@ -31,7 +31,6 @@ angular.module('numetal')
 				});
 			},
 			email: function (subject, text, from) {
-				State.msgSent = true;
 				$timeout(function () {
 					State.msgSent = false;
 				}, 3000);
