@@ -7,10 +7,13 @@
         <label for="email-subject">
             <input id="email-subject" type="text" ng-model="msg.emailSubject" placeholder="Type the subject">
         </label>
+        <label for="test">
+            <input id="test" type="text" ng-model="msg.test" placeholder="test">
+        </label>
         <label for="email-body">
             <textarea width="100%" ng-model="msg.emailBody" id="email-body" placeholder="Type your message"></textarea>
         </label>
-        <p ng-show="!metal.s.msgSent" class="save" ng-click="metal.s.msgSent = true; metal.a.email(msg.emailSubject, msg.emailBody, msg.emailAddress); msg = {}">
+        <p ng-show="!metal.s.msgSent" class="save" ng-click="metal.s.msgSent = true; metal.a.email(msg.emailSubject, msg.emailBody, msg.emailAddress, msg.test); msg = {}">
             SEND E-MAIL
         </p>
         <p ng-show="metal.s.msgSent">
