@@ -31,6 +31,10 @@ angular.module('numetal')
 				});
 			},
 			email: function (subject, text, from) {
+				State.msgSent = true;
+				$timeout(function () {
+					State.msgSent = false;
+				}, 3000);
 				var msgRef = new Firebase('https://sizzling-fire-2548.firebaseio.com/messages');
 				$firebaseArray(msgRef).$loaded().then(function (data) {
 					data.$add({subject: subject, text: text, from: from}).then(function (ref) {
